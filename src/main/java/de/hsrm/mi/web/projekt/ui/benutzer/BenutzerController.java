@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class BenutzerController {
     // n mit dieser zahl ersetzen
     @GetMapping("/benutzer/{n}")
-    public String showBenutzerBearbeiten(@PathVariable("n") Long n) {
+    public String showBenutzerBearbeiten(@PathVariable("n") Long userID, Model model) {
+        model.addAttribute("userID",userID);
         return "benutzerbearbeiten";
     }
 }
