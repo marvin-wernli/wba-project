@@ -1,0 +1,17 @@
+input {
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 5px;
+  }
+label{
+  padding: 10px;
+  margin: 0px 10px;
+}
+.submit{
+  padding: 10px;
+  background-color: aquamarine;
+  border: none;
+}
+.submit:hover{
+  background-color: cyan;
+}
