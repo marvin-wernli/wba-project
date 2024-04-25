@@ -6,32 +6,24 @@
 
 <body>
     <div>
+        Ich glaube wegen dem Post muss alles in eine Form 
         <h1>Benutzerprofil <span th:text="${userID}"></span> bearbeiten.</h1>
-        <form>
+        <form action="post">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" >
-        </form>
-        <form>
             <label for="mail">E-Mail</label>
             <input type="text" id="mail" name="mail" >
-        </form>
-        <form>
             <label for="password">Passwort</label>
             <input type="text" id="password" name="password" >
-        </form>
-        <form>
             <label for="birthdate">Geburtstag</label>
             <input type="text" id="birthdate" name="birthdate" >
-        </form>
-        <form>
-            <label for="like">Mag</label>
-            <input type="text" id="like" name="like" >
-        </form>
-        <form>
-            <label for="dislike">Mag nicht</label>
-            <input type="text" id="dislike" name="dislike" >
-        </form>
-        <form>
+            <div class="form-row">
+                <label for="like">Mag</label>
+                <input type="text" id="like" name="like" ></div>
+            <div class="form-row">
+                <label for="dislike">Mag nicht</label>
+                <input type="text" id="dislike" name="dislike" >
+            </div>
             <input class="submit" type="submit" value="Ok">
         </form>
     </div>
