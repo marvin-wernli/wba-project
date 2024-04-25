@@ -14,16 +14,29 @@ label {
   margin-bottom: 5px;
 }
 input {
-  padding: 5px;
+  padding: 8px 5px;
   margin-bottom: 10px;
+  border: 2px solid;
+  border-radius: 10px;
+  border-color: aquamarine;
+}
+input:focus{
+  border-color: aqua;
+  outline: none;
 }
 
 .submit{
   align-self: flex-end;
   padding: 10px;
   background-color: aquamarine;
-  border: none;
+  border: 1px;
 }
 .submit:hover{
-  background-color: grey;
+  background-color:aqua;
+}
+.wrapper{
+  display: flex;
+}
+.form-row {
+  width: 100%;
 }
