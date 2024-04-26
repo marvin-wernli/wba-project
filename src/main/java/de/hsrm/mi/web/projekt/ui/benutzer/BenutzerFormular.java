@@ -7,9 +7,12 @@ public class BenutzerFormular {
     private String mail;
     private String password;
     private LocalDate birthdate;
-    
-    public BenutzerFormular(){
 
+    public BenutzerFormular(String name, String mail, String password, LocalDate birthdate) {
+        this.name = name;
+        this.mail = mail;
+        this.password = password;
+        this.birthdate = birthdate;
     }
 
     public String getName() {

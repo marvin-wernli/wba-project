@@ -8,13 +8,22 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
 @Controller
+@SessionAttributes(names = {"form"})
 public class BenutzerController {
+
+    //Daten als SessionAttributes speichern ( funktioniert noch nicht :c )
+    @ModelAttribute("form")
+    public void initUser(Model model, BenutzerFormular form){
+        model.addAttribute("form", form);
+    }
+
     // n mit dieser zahl ersetzen
     @GetMapping("/benutzer/{n}")
     public String showBenutzerBearbeiten(@PathVariable("n") Long userID, Model model) {
@@ -25,10 +34,12 @@ public class BenutzerController {
     @PostMapping("/benutzer/{n}")
     public String submitForm(@ModelAttribute("userID") BenutzerFormular form, BindingResult result, Model model) {
         
-        if (result.hasErrors()){
-            return "error";
+        if (!result.hasErrors()){
+            // die Zeile ist nur zum testen ob form gefüllt ist
+            model.addAttribute("userID", form.getName());
+
+            return "benutzerbearbeiten";
         }
-        model.addAttribute("userID", form);
         return "benutzerbearbeiten";
     }
     
