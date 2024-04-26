@@ -7,15 +7,15 @@
 <body>
     <div>
         <h1>Benutzerprofil <span th:text="${userID}"></span> bearbeiten.</h1>
-        <form action="post">
+        <form action="#" th:action="@{#}" th:object="userID" method="post">
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" >
+            <input type="text" id="name" name="name" th:field="*{name}">
             <label for="mail">E-Mail</label>
-            <input type="text" id="mail" name="mail" >
+            <input type="text" id="mail" name="mail" th:field="*{mail}">
             <label for="password">Passwort</label>
-            <input type="text" id="password" name="password" >
+            <input type="text" id="password" name="password" th:field="*{password}">
             <label for="birthdate">Geburtstag</label>
-            <input type="date" id="birthdate" name="birthdate" >
+            <input type="date" id="birthdate" name="birthdate" th:field="*{birthdate}">
             <div class="wrapper">
                 <div class="form-row">
                     <label for="like">Mag</label><br>
