@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @SessionAttributes(names = {"form"})
 public class BenutzerController {
 
-    //Daten als SessionAttributes speichern ( funktioniert noch nicht :c )
+    //Daten als SessionAttributes speichern
     @ModelAttribute("form")
     public void initUser(Model model, BenutzerFormular form){
         model.addAttribute("form", form);
@@ -32,11 +32,11 @@ public class BenutzerController {
     }
 
     @PostMapping("/benutzer/{n}")
-    public String submitForm(@ModelAttribute("userID") BenutzerFormular form, BindingResult result, Model model) {
+    public String submitForm(@ModelAttribute("form") BenutzerFormular form, BindingResult result, Model model) {
         
         if (!result.hasErrors()){
             // die Zeile ist nur zum testen ob form gefüllt ist
-            model.addAttribute("userID", form.getName());
+            //model.addAttribute("form", form);
 
             return "benutzerbearbeiten";
         }
