@@ -17,7 +17,6 @@ public class BenutzerFormular {
     }
 
     public BenutzerFormular() {
-        
     }
 
     public String getName() {
