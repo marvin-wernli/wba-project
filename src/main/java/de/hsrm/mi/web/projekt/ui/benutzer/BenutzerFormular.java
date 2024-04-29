@@ -9,10 +9,15 @@ public class BenutzerFormular {
     private LocalDate birthdate;
 
     public BenutzerFormular(String name, String mail, String password, LocalDate birthdate) {
+        this();
         this.name = name;
         this.mail = mail;
         this.password = password;
         this.birthdate = birthdate;
+    }
+
+    public BenutzerFormular() {
+        
     }
 
     public String getName() {
