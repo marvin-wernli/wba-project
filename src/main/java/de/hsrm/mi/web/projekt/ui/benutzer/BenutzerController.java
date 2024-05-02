@@ -18,9 +18,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 @SessionAttributes(names = {"form"})
 public class BenutzerController {
 
+    int maxwunsch = 5;
+
     //Daten als SessionAttributes speichern
     @ModelAttribute("form")
     public void initUser(Model model, BenutzerFormular form){
+        form.setMax(maxwunsch);
         model.addAttribute("form", form);
     }
 
@@ -28,15 +31,22 @@ public class BenutzerController {
     @GetMapping("/benutzer/{n}")
     public String showBenutzerBearbeiten(@PathVariable("n") Long userID, Model model) {
         model.addAttribute("userID",userID);
+        model.addAttribute("maxwunsch", maxwunsch);
         return "benutzerbearbeiten";
     }
 
     @PostMapping("/benutzer/{n}")
-    public String submitForm(@ModelAttribute("form") BenutzerFormular form, BindingResult result, Model model) {
+    public String submitForm(   @PathVariable("n") Long userID, 
+                                @ModelAttribute("form") BenutzerFormular form,
+                                @RequestParam("like") String like,
+                                @RequestParam("dislike") String dislike,
+                                BindingResult result, Model model   ) {
         
         if (!result.hasErrors()){
-            // die Zeile ist nur zum testen ob form gefüllt ist
-            //model.addAttribute("form", form);
+            form.addLikes(like);
+            form.addDislikes(dislike);
+            model.addAttribute("userID",userID);
+            model.addAttribute("maxwunsch", maxwunsch);
 
             return "benutzerbearbeiten";
         }

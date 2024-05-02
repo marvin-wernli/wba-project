@@ -20,11 +20,19 @@
             <div class="wrapper">
                 <div class="form-row">
                     <label for="like">Mag</label><br>
-                    <input type="text" id="like" name="like" >
+                    <p>(max. <span th:text="${maxwunsch}"></span>)</p>
+                    <input type="text" id="like" name="like" th:name="like">
+                    <ul th:each="e: ${form.likes}">
+                        <li th:text="${e.toString}"></li>
+                    </ul>
                 </div>
-                <div>
+                <div >
                     <label for="dislike">Mag nicht</label><br>
-                    <input type="text" id="dislike" name="dislike" >
+                    <p>(max. <span th:text="${maxwunsch}"></span>)</p>
+                    <input type="text" id="dislike" name="dislike" th:name="dislike">
+                    <ul th:each="e: ${form.dislikes}">
+                        <li th:text="${e.toString}"></li>
+                    </ul>
                 </div>
             </div>
             <input class="submit" type="submit" value="Ok">
