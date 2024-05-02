@@ -35,13 +35,13 @@ public class BenutzerController {
     }
 
     @PostMapping("/benutzer/{n}")
-    public String submitForm(@ModelAttribute("form") BenutzerFormular form, BindingResult result, Model model) {
+    public String submitForm(@PathVariable("n") Long userID, @ModelAttribute("form") BenutzerFormular form, BindingResult result, Model model) {
         
         if (!result.hasErrors()){
             // die Zeile ist nur zum testen ob form gefüllt ist
             //model.addAttribute("form", form);
 
-            return "benutzerbearbeiten";
+            return "redirect:/benutzer/" + userID;
         }
         return "benutzerbearbeiten";
     }
