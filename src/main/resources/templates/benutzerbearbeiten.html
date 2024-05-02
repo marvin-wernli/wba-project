@@ -8,15 +8,16 @@
 <body>
     <div>
         <h1>Benutzerprofil <span th:text="${userID}"></span> bearbeiten.</h1>
+
         <form action="#" th:action="@{#}" th:object="${form}" method="post">
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" th:value="${form.name}">
-            <label for="mail">E-Mail</label>
-            <input type="text" id="mail" name="mail" th:value="${form.mail}">
+            <input type="text" id="name" name="name" th:value="${form.name}" required>
+            <label for="email">E-Mail</label>
+            <input type="mail" id="mail" name="mail" th:value="${form.mail}" required>
             <label for="password">Passwort</label>
-            <input type="text" id="password" name="password" th:value="${form.password}">
+            <input type="password" id="password" name="password" th:value="${form.password}" required>
             <label for="birthdate">Geburtstag</label>
-            <input type="date" id="birthdate" name="birthdate" th:value="${form.birthdate}">
+            <input type="date" id="birthdate" name="birthdate" th:value="${form.birthdate}" required>
             <div class="wrapper">
                 <div class="form-row">
                     <label for="like">Mag</label><br>
