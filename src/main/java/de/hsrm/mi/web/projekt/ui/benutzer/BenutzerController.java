@@ -30,6 +30,7 @@ public class BenutzerController {
     // n mit dieser zahl ersetzen
     @GetMapping("/benutzer/{n}")
     public String showBenutzerBearbeiten(@PathVariable("n") Long userID, Model model) {
+        model.addAttribute("maxwunsch",maxwunsch);
         model.addAttribute("userID",userID);
         model.addAttribute("maxwunsch", maxwunsch);
         return "benutzerbearbeiten";
@@ -48,7 +49,7 @@ public class BenutzerController {
             model.addAttribute("userID",userID);
             model.addAttribute("maxwunsch", maxwunsch);
 
-            return "benutzerbearbeiten";
+            return "redirect:/benutzer/" + userID;
         }
         return "benutzerbearbeiten";
     }
