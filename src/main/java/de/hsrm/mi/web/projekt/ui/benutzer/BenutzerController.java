@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @SessionAttributes(names = {"form"})
 public class BenutzerController {
 
-    int maxwunsch = 5;
+    private int maxwunsch = 5;
 
     //Daten als SessionAttributes speichern
     @ModelAttribute("form")
@@ -30,7 +30,6 @@ public class BenutzerController {
     // n mit dieser zahl ersetzen
     @GetMapping("/benutzer/{n}")
     public String showBenutzerBearbeiten(@PathVariable("n") Long userID, Model model) {
-        model.addAttribute("maxwunsch",maxwunsch);
         model.addAttribute("userID",userID);
         model.addAttribute("maxwunsch", maxwunsch);
         return "benutzerbearbeiten";

@@ -31,12 +31,12 @@ public class BenutzerFormular{
     }
 
     public void addLikes(String name){
-        if (likes.size() < max) {
+        if (likes.size() != max) {
             likes.add(name);
         }
     }
     public void addDislikes(String name){
-        if (dislikes.size() < max) {
+        if (dislikes.size() != max) {
             dislikes.add(name);
         }
     }

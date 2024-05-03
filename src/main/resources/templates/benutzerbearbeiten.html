@@ -23,7 +23,7 @@
                     <label for="like">Mag</label><br>
                     <p>(max. <span th:text="${maxwunsch}"></span>)</p>
                     <input type="text" id="like" name="like" th:name="like">
-                    <ul th:each="e: ${form.likes}">
+                    <ul th:each="e: ${#lists.sort(form.likes)}">
                         <li th:text="${e.toString}"></li>
                     </ul>
                 </div>
@@ -31,7 +31,7 @@
                     <label for="dislike">Mag nicht</label><br>
                     <p>(max. <span th:text="${maxwunsch}"></span>)</p>
                     <input type="text" id="dislike" name="dislike" th:name="dislike">
-                    <ul th:each="e: ${form.dislikes}">
+                    <ul th:each="e: ${#lists.sort(form.dislikes)}">
                         <li th:text="${e.toString}"></li>
                     </ul>
                 </div>
