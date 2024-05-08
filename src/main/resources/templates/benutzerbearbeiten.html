@@ -9,20 +9,21 @@
     <div>
         <h1>Benutzerprofil <span th:text="${userID}"></span> bearbeiten.</h1>
 
-        <form action="#" th:action="@{#}" th:object="${form}" method="post">
+        <form th:action="@{#}" th:object="${form}" method="post">
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" th:value="${form.name}" required>
+            <input type="text" id="name" name="name" th:field="*{name}">
             <label for="email">E-Mail</label>
-            <input type="text" id="mail" name="mail" th:value="${form.mail}" required>
+            <input type="text" id="mail" name="mail" th:value="${mail}" th:field="*{mail}">
+            <p th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}">test </p>
             <label for="password">Passwort</label>
-            <input type="password" id="password" name="password" th:value="${form.password}" required>
+            <input type="password" id="password" name="password" th:value="${form.password}">
             <label for="birthdate">Geburtstag</label>
-            <input type="date" id="birthdate" name="birthdate" th:value="${form.birthdate}" required>
+            <input type="date" id="birthdate" name="birthdate" th:value="${form.birthdate}">
             <div class="wrapper">
                 <div class="form-row">
                     <label for="like">Mag</label><br>
                     <p>(max. <span th:text="${maxwunsch}"></span>)</p>
-                    <input type="text" id="like" name="like" th:name="like" th:if="${form.likes.size() < maxwunsch }">
+                    <input type="text" id="like" name="like" th:disabled="${form.likes.size() > maxwunsch}">
                     <ul th:each="e: ${#lists.sort(form.likes)}">
                         <li th:text="${e.toString}"></li>
                     </ul>
@@ -30,7 +31,7 @@
                 <div >
                     <label for="dislike">Mag nicht</label><br>
                     <p>(max. <span th:text="${maxwunsch}"></span>)</p>
-                    <input type="text" id="dislike" name="dislike" th:name="dislike" th:if="${form.dislikes.size() < maxwunsch }">
+                    <input type="text" id="dislike" name="dislike" th:if="${form.dislikes.size() < maxwunsch }">
                     <ul th:each="e: ${#lists.sort(form.dislikes)}">
                         <li th:text="${e.toString}"></li>
                     </ul>

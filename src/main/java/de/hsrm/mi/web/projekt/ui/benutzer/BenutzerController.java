@@ -7,8 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,34 +26,39 @@ public class BenutzerController {
 
     //Daten als SessionAttributes speichern
     @ModelAttribute("form")
-    public void initUser(Model model, BenutzerFormular form){
-        form.setMax(maxwunsch);
-        model.addAttribute("form", form);
+    public void initUser(Model model){
+        // form.setMax(maxwunsch);
+        model.addAttribute("form", new BenutzerFormular());
     }
 
     // n mit dieser zahl ersetzen
     @GetMapping("/benutzer/{n}")
-    public String showBenutzerBearbeiten(@PathVariable("n") Long userID, Model model) {
+    public String showBenutzerBearbeiten(@PathVariable("n") Long userID, @ModelAttribute("form") BenutzerFormular form, Model model) {
         model.addAttribute("userID",userID);
         model.addAttribute("maxwunsch", maxwunsch);
         return "benutzerbearbeiten";
     }
 
+
     @PostMapping("/benutzer/{n}")
     public String submitForm(   @PathVariable("n") Long userID, 
-                                @ModelAttribute("form") BenutzerFormular form,
+                                @Valid @ModelAttribute("form") BenutzerFormular form,
+                                BindingResult result,
                                 @RequestParam("like") String like,
                                 @RequestParam("dislike") String dislike,
-                                BindingResult result, Model model   ) {
+                                Model model   ) {
         
-        if (!result.hasErrors()){
-            form.addLikes(like);
-            form.addDislikes(dislike);
-            model.addAttribute("userID",userID);
-            model.addAttribute("maxwunsch", maxwunsch);
-
-            return "redirect:/benutzer/" + userID;
+        if (result.hasErrors()){
+            return "benutzerbearbeiten";
         }
+        if (!like.equals("")){
+            form.addLikes(like);
+        }
+        if (!dislike.equals("")){
+            form.addDislikes(dislike);
+        }
+        model.addAttribute("userID",userID);
+        model.addAttribute("maxwunsch", maxwunsch);
         return "benutzerbearbeiten";
     }
     

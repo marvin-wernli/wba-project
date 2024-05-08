@@ -11,47 +11,39 @@ import java.time.LocalDate;
 public class BenutzerFormular{
 
     @NotBlank
-    @Size(min=3,max=80)
+    @Size(min=3,max=80,message="Laenge von {min} bis {max}.")
     private String name;
 
-    @Email
+    @Email(message="Bitte eine echt E-Mail, ty :3")
     private String mail;
 
     private String password;
 
-    @Past
+    @Past(message="Kein Timetravelling erlaubt.")
     private LocalDate birthdate;
+
     private Set<String> likes;
     private Set<String> dislikes;
     private int max;
 
 
-    public BenutzerFormular(String name, String mail, String password, LocalDate birthdate) {
-        this();
-        this.name = name;
-        this.mail = mail;
-        this.password = password;
-        this.birthdate = birthdate;
-    }
-
     public BenutzerFormular() {
         likes = new HashSet<String>();
         dislikes = new HashSet<String>();
-        
     }
 
     public void setMax(int max){
         this.max = max;
     }
 
-    public void addLikes(String name){
+    public void addLikes(String like){
         if (likes.size() != max) {
-            likes.add(name);
+            likes.add(like);
         }
     }
-    public void addDislikes(String name){
+    public void addDislikes(String dislike){
         if (dislikes.size() != max) {
-            dislikes.add(name);
+            dislikes.add(dislike);
         }
     }
     public Set<String> getLikes() {
