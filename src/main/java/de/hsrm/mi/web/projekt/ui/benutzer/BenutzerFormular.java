@@ -1,11 +1,25 @@
 package de.hsrm.mi.web.projekt.ui.benutzer;
 import java.util.*;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
+
 import java.time.LocalDate;
 
 public class BenutzerFormular{
+
+    @NotBlank
+    @Size(min=3,max=80)
     private String name;
+
+    @Email
     private String mail;
+
     private String password;
+
+    @Past
     private LocalDate birthdate;
     private Set<String> likes;
     private Set<String> dislikes;
