@@ -10,6 +10,7 @@
         <h1>Benutzerprofil <span th:text="${userID}"></span> bearbeiten.</h1>
 
         <form th:action="@{#}" th:object="${form}" method="post">
+            <input type="hidden" id="userID" name="userID" th:value="${userID}">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" th:field="*{name}">
             <label for="email">E-Mail</label>
@@ -23,7 +24,7 @@
                 <div class="form-row">
                     <label for="like">Mag</label><br>
                     <p>(max. <span th:text="${maxwunsch}"></span>)</p>
-                    <input type="text" id="like" name="like" th:disabled="${form.likes.size() > maxwunsch}">
+                    <input type="text" id="like" name="like" th:if="${#lists.size(form.likes)} lt ${maxwunsch}">
                     <ul th:each="e: ${#lists.sort(form.likes)}">
                         <li th:text="${e.toString}"></li>
                     </ul>
@@ -31,7 +32,7 @@
                 <div >
                     <label for="dislike">Mag nicht</label><br>
                     <p>(max. <span th:text="${maxwunsch}"></span>)</p>
-                    <input type="text" id="dislike" name="dislike" th:if="${form.dislikes.size() < maxwunsch }">
+                    <input type="text" id="dislike" name="dislike" th:if="${#lists.size(form.dislikes)} lt ${maxwunsch}">
                     <ul th:each="e: ${#lists.sort(form.dislikes)}">
                         <li th:text="${e.toString}"></li>
                     </ul>

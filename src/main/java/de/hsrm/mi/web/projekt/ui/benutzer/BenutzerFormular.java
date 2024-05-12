@@ -24,27 +24,18 @@ public class BenutzerFormular{
 
     private Set<String> likes;
     private Set<String> dislikes;
-    private int max;
-
 
     public BenutzerFormular() {
-        likes = new HashSet<String>();
-        dislikes = new HashSet<String>();
-    }
-
-    public void setMax(int max){
-        this.max = max;
+        this.likes = new HashSet<String>();
+        this.dislikes = new HashSet<String>();
     }
 
     public void addLikes(String like){
-        if (likes.size() != max) {
+            System.out.println("Wird hinzugefügt.");
             likes.add(like);
-        }
     }
     public void addDislikes(String dislike){
-        if (dislikes.size() != max) {
             dislikes.add(dislike);
-        }
     }
     public Set<String> getLikes() {
         return likes;
