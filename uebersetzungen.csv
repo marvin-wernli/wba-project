@@ -1,0 +1,28 @@
+propertyname;de;en;nl
+
+# Kopf-/Fusszeile
+kopf.benutzer;Benutzer;Users;Gebruikers
+kopf.touren;Touren;Tours;Reizen
+kopf.orte;Orte;Places;Plaatsen
+fuss.impressum;Impressum;imprint;afdruk
+fuss.kontakt;Kontakt;contact;contact
+
+# Benutzer-Formular
+benutzer.name;Name;Name;Naam
+benutzer.email;E-Mail;E-mail;E-mail
+benutzer.passwort;Passwort;Password;Wachtwoord
+benutzer.geburtstag;Geburtstag;Date of birth;Geboortedatum
+benutzer.magich;Ich mag;I like;Ik hou van
+benutzer.magichnicht;Ich mag nicht;I don't like;Ik hou niet van
+benutzerprofil.titel;Benutzerprofil {0} bearbeiten;Edit user profile {0};Gebruikersprofiel {0} bewerken
+benutzerprofil.titel.neu;Neues Benutzerprofil;New user profile;Nieuw gebruikersprofiel
+benutzer.passwort.ungesetzt;Passwort wurde noch nicht gesetzt;The password has not yet been set;Het wachtwoord is nog niet ingesteld
+
+# GutesPasswort-Validator
+gutespasswort.fehler;Das ist kein gutes Passwort;This is not a good password;Dit is geen goed wachtwoord
+
+# Benutzer-Liste
+benutzerliste.neu;Neuer Benutzer;new user;nieuw gebruiker
+benutzerliste.eintrag.bearbeiten;bearbeiten;edit;bewerken
+benutzerliste.eintrag.loeschen;löschen;delete;wissen
+benutzerliste.titel;Benutzerliste;all users;alle gebruikers

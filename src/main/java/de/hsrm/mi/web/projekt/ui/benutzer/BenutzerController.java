@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Controller
 // Glaub Praktikum leute meinten das sei unnötig 
 @RequestMapping("/benutzer")
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class BenutzerController {
 
     private final int maxwunsch = 5;
+    Logger logger = LoggerFactory.getLogger(BenutzerController.class);
 
     @ModelAttribute("form")
     public void initFormular(Model model) {
@@ -51,6 +55,7 @@ public class BenutzerController {
         }
         if (result.hasErrors()){
             // Er soll auf Seite mit Fehlermeldung geleitet.
+            logger.error("Geht nicht in Methode.");
             return "benutzerbearbeiten";
         }
         return "benutzerbearbeiten";

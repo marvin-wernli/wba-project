@@ -1,8 +1,8 @@
 package de.hsrm.mi.web.projekt.ui.benutzer;
 import java.util.*;
 
+import de.hsrm.mi.web.projekt.validators.GutesPasswort;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
@@ -10,16 +10,16 @@ import java.time.LocalDate;
 
 public class BenutzerFormular{
 
-    @NotBlank
-    @Size(min=3,max=80,message="Laenge von {min} bis {max}.")
+    @Size(min=3,max=80)
     private String name;
 
-    @Email(message="Bitte eine echt E-Mail, ty :3")
+    @Email()
     private String mail;
 
+    @GutesPasswort()
     private String password;
 
-    @Past(message="Kein Timetravelling erlaubt.")
+    @Past()
     private LocalDate birthdate;
 
     private Set<String> likes;
