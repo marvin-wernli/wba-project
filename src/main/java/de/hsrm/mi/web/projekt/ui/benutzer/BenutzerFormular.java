@@ -16,7 +16,7 @@ public class BenutzerFormular{
     @Email()
     private String mail;
 
-    @GutesPasswort()
+    @GutesPasswort(message="{gutespasswort.fehler}")
     private String password;
 
     @Past()
