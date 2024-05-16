@@ -4,14 +4,14 @@
     </head>
     <body>
         <header th:fragment="kopf">
-            <a th:text="#{kopf.benutzer}">Benutzer</a>
+            <a class="hUsr" th:text="#{kopf.benutzer}">Benutzer</a>
             <a th:href="@{?sprache=de}">DE</a>
             <a th:href="@{?sprache=nl}">NL</a>
             <a th:href="@{?sprache=en}">EN</a>
         </header>
         <footer th:fragment="fuss">
-            <a th:text="#{fuss.impressum}">Benutzer</a>
-            <a th:text="#{fuss.kontakt}">Benutzer</a>
+            <a class="impressum" th:text="#{fuss.impressum}">Impressum</a>
+            <a th:text="#{fuss.kontakt}">Kontakt</a>
         </footer>
     </body>
 </html>

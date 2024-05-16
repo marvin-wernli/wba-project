@@ -2,16 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>MIfahrzentrale</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 
 <body>
     <div>
-        <article th:insert="~{fragments/kopffuss :: kopf}">
-
-        </article>
+        <article th:insert="~{fragments/kopffuss :: kopf}"></article>
     </div>
-    <div>
+    <div class="border">
         <h1 th:text="#{benutzerprofil.titel(${userID})}">Benutzerprofil <span th:text="${userID}"></span> bearbeiten.</h1>
 
         <form th:action="@{#}" th:object="${form}" method="post">
@@ -50,9 +49,7 @@
         </form>
     </div>
     <div>
-        <article th:insert="~{fragments/kopffuss :: fuss}">
-
-        </article>
+        <article th:insert="~{fragments/kopffuss :: fuss}"></article>
     </div>
 </body>
 </html>

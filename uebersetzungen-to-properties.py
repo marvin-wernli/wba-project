@@ -9,6 +9,7 @@ with open("uebersetzungen.csv",'r') as file:
                 f.write(parts[0]+"="+parts[1]+"\n")
         file.seek(0)
         file.readline()
+        
     for element in range(len(lst)-1):
         kuerzel = lst[element+1]
         
