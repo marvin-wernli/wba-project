@@ -7,6 +7,11 @@
 
 <body>
     <div>
+        <article th:insert="~{fragments/kopffuss :: kopf}">
+
+        </article>
+    </div>
+    <div>
         <h1 th:text="#{benutzerprofil.titel(${userID})}">Benutzerprofil <span th:text="${userID}"></span> bearbeiten.</h1>
 
         <form th:action="@{#}" th:object="${form}" method="post">
@@ -43,6 +48,11 @@
             </div>
             <input class="submit" type="submit" value="Ok">
         </form>
+    </div>
+    <div>
+        <article th:insert="~{fragments/kopffuss :: fuss}">
+
+        </article>
     </div>
 </body>
 </html>

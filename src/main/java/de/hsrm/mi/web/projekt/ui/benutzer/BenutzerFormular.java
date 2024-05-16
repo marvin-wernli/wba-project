@@ -1,6 +1,9 @@
 package de.hsrm.mi.web.projekt.ui.benutzer;
 import java.util.*;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 import de.hsrm.mi.web.projekt.validators.GutesPasswort;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Past;
@@ -20,6 +23,7 @@ public class BenutzerFormular{
     private String password;
 
     @Past()
+    @DateTimeFormat(iso=ISO.DATE)
     private LocalDate birthdate;
 
     private Set<String> likes;

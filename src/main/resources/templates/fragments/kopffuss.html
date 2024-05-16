@@ -1,0 +1,17 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <header th:fragment="kopf">
+            <a th:text="#{kopf.benutzer}">Benutzer</a>
+            <a th:href="@{?sprache=de}">DE</a>
+            <a th:href="@{?sprache=nl}">NL</a>
+            <a th:href="@{?sprache=en}">EN</a>
+        </header>
+        <footer th:fragment="fuss">
+            <a th:text="#{fuss.impressum}">Benutzer</a>
+            <a th:text="#{fuss.kontakt}">Benutzer</a>
+        </footer>
+    </body>
+</html>

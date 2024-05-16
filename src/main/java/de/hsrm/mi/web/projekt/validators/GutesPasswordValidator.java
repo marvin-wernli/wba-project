@@ -10,7 +10,7 @@ public class GutesPasswordValidator implements ConstraintValidator<GutesPasswort
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         
-        if (value.contains("17") || value.toUpperCase().contains("SIEBZEHN")) {
+        if (value.contains("17") || value.toUpperCase().contains("SIEBZEHN") || value.isBlank())  {
             return true;
         }
         return false;
