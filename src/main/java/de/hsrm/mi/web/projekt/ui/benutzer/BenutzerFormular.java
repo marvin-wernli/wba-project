@@ -4,6 +4,7 @@ import java.util.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.validators.GutesPasswort;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Past;
@@ -35,12 +36,32 @@ public class BenutzerFormular{
     }
 
     public void addLikes(String like){
-            System.out.println("Wird hinzugefügt.");
             likes.add(like);
     }
     public void addDislikes(String dislike){
             dislikes.add(dislike);
     }
+
+    /**
+     * b wird mit dem Inhalt des Formulars befüllt.
+     * @param b
+     */
+    public void toBenutzer(Benutzer b) {
+        b.setName(this.name);
+        b.setBirthdate(this.birthdate);
+        b.setMail(this.mail);
+    }
+
+    /**
+     * Das Formular wird mit den Daten von befüllt.
+     * @param b
+     */
+    public void fromBenutzer(Benutzer b) {
+        this.setName(b.getName());
+        this.setBirthdate(b.getBirthdate());
+        this.setMail(b.getMail());
+    }
+
     public Set<String> getLikes() {
         return likes;
     }
