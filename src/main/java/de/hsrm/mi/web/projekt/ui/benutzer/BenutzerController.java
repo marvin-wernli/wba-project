@@ -67,7 +67,6 @@ public class BenutzerController {
     @PostMapping("/{n}")
     public String submitForm(   @Valid @ModelAttribute("form") BenutzerFormular form,
                                 BindingResult result,
-                                @ModelAttribute("benutzer") Benutzer benutzer,
                                 @RequestParam("like") String like,
                                 @RequestParam("dislike") String dislike,
                                 Model model   ) {
@@ -77,16 +76,19 @@ public class BenutzerController {
         if (!like.equals("") && like != null) {
             form.addLikes(like);
         }
-        if (benutzer.getPassword() == null || benutzer.getPassword().isEmpty()) {
+        if (form.getPassword() == null || form.getPassword().isEmpty()) {
             result.rejectValue("password", "benutzer.password.ungesetzt", "Passwort wurde noch nicht gesetzt");
         }
         if (result.hasErrors()){
+            logger.error("Mit errors:" + form.getPassword() + form.getName());
             // Er soll auf Seite mit Fehlermeldung geleitet.
             return "benutzerbearbeiten";
         }
-        form.toBenutzer(benutzer);
-        benutzer = benutzerService.speichereBenutzer(benutzer);
-        logger.error(benutzer.getPassword());
+
+        Benutzer newBenutzer = new Benutzer();
+        form.toBenutzer(newBenutzer);
+        newBenutzer = benutzerService.speichereBenutzer(newBenutzer);
+        logger.error("Ohne errors:" + form.getPassword() + form.getName());
         return "benutzerbearbeiten";
     }
     
