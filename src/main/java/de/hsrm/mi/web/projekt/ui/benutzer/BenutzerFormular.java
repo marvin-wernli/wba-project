@@ -53,7 +53,7 @@ public class BenutzerFormular{
     }
 
     /**
-     * Das Formular wird mit den Daten von befüllt.
+     * Das Formular wird mit den Daten von b befüllt.
      * @param b
      */
     public void fromBenutzer(Benutzer b) {

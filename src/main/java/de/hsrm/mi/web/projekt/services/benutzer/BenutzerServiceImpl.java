@@ -21,7 +21,6 @@ public class BenutzerServiceImpl implements BenutzerService {
         this.benutzerRepository = bR;
     }
 
-
     @Override
     public List<Benutzer> holeAlleBenutzer() {
         return benutzerRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
@@ -30,7 +29,6 @@ public class BenutzerServiceImpl implements BenutzerService {
     @Override
     public Optional<Benutzer> holeBenutzerMitId(long id) {
         return benutzerRepository.findById(id);
-
    }
 
     @Override

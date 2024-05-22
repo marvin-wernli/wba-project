@@ -12,6 +12,7 @@ import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Version;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
@@ -24,9 +25,7 @@ public class Benutzer {
     @GeneratedValue
     private long id;
 
-    @Id
-    // TODO: version auch als generated?
-    @GeneratedValue
+    @Version
     private long version;
 
     @NonNull
