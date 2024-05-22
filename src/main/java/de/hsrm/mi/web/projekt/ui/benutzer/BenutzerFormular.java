@@ -50,6 +50,7 @@ public class BenutzerFormular{
         b.setName(this.name);
         b.setBirthdate(this.birthdate);
         b.setMail(this.mail);
+        //b.setPassword();
     }
 
     /**

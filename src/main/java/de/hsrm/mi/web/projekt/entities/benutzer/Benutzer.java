@@ -1,13 +1,12 @@
 package de.hsrm.mi.web.projekt.entities.benutzer;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.*;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import de.hsrm.mi.web.projekt.validators.GutesPasswort;
-import io.micrometer.common.lang.NonNull;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,30 +27,30 @@ public class Benutzer {
     @Version
     private long version;
 
-    @NonNull
+    @NotNull
     @Size(min=3,max=80)
     private String name;
 
-    @NonNull
+    @NotNull
     @Email()
     private String mail;
 
-    @NonNull
+    @NotNull
     @GutesPasswort(message="{gutespasswort.fehler}")
     private String password;
 
-    @NonNull
+    @NotNull
     @Past()
     @DateTimeFormat(iso=ISO.DATE)
     private LocalDate birthdate;
 
     @NotNull
     @ElementCollection
-    private Set<String> likes;
+    private Set<String> likes = new HashSet<String>();
 
-    @NonNull
+    @NotNull
     @ElementCollection
-    private Set<String> dislikes;
+    private Set<String> dislikes = new HashSet<String>();
 
     public long getId() {
         return id;
@@ -88,7 +87,10 @@ public class Benutzer {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        if(password != null && !password.isEmpty()){
+            this.password = password;
+        }
+        
     }
 
     public LocalDate getBirthdate() {
