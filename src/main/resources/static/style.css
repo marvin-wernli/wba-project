@@ -35,11 +35,11 @@ input {
   margin-bottom: 10px;
   border: 2px solid;
   border-radius: 10px;
-  border-color: aquamarine;
+  border-color: lightgray;
   max-width: calc(100% - 20px);
 }
 input:focus{
-  border-color: rgb(26, 241, 170);
+  border-color: darkgray;
   outline: none;
 }
 
@@ -48,19 +48,29 @@ input:focus{
   font-size: 32px;
   font-weight: bold;
 }
-header{
+.header{
   padding: 20px;
   background: aquamarine;
   font-size: 32px;
   text-align: right;
 }
-header a {
+.header a {
   font-size: 14pt;
   text-decoration: none;
   color: black;
 }
-header a:hover{
+.header a:hover{
   color: white;
+}
+
+.errorText {
+  display: table;
+  margin: 0 auto;
+  color: red;
+  background-color: orange;
+  border: 2px solid lightgray;
+  border-radius: 10px;
+  padding: 20px
 }
 
 .impressum {

@@ -67,6 +67,7 @@ public class BenutzerController {
     @PostMapping("/{n}")
     public String submitForm(   @Valid @ModelAttribute("form") BenutzerFormular form,
                                 BindingResult result,
+                                @ModelAttribute("info") String info,
                                 @RequestParam("like") String like,
                                 @RequestParam("dislike") String dislike,
                                 Model model   ) {
@@ -87,8 +88,19 @@ public class BenutzerController {
 
         Benutzer newBenutzer = new Benutzer();
         form.toBenutzer(newBenutzer);
-        newBenutzer = benutzerService.speichereBenutzer(newBenutzer);
-        logger.error("Ohne errors:" + form.getPassword() + form.getName());
+        newBenutzer.setPassword(form.getPassword());
+        try {
+            newBenutzer = benutzerService.speichereBenutzer(newBenutzer);
+            info = null;
+        } catch (Exception e) {
+            info = e.toString();
+            if (info.isEmpty()) {
+                info = null;
+            }   
+            model.addAttribute("info", info);
+            logger.error("Fehler: ", info);
+        }        
+        logger.error("Ohne errors: " + newBenutzer.getPassword() + newBenutzer.getName());
         return "benutzerbearbeiten";
     }
     

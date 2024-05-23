@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.entities.benutzer.BenutzerRepository;
@@ -21,22 +22,22 @@ public class BenutzerServiceImpl implements BenutzerService {
         this.benutzerRepository = bR;
     }
 
-    @Override
+    @Override @Transactional
     public List<Benutzer> holeAlleBenutzer() {
         return benutzerRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
 
-    @Override
+    @Override @Transactional
     public Optional<Benutzer> holeBenutzerMitId(long id) {
         return benutzerRepository.findById(id);
    }
 
-    @Override
+    @Override @Transactional
     public Benutzer speichereBenutzer(Benutzer b) {
         return benutzerRepository.save(b);
   }
 
-    @Override
+    @Override @Transactional
     public void loescheBenutzerMitId(long id) {
         benutzerRepository.deleteById(id);
    }

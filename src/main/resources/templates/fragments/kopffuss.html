@@ -4,10 +4,15 @@
     </head>
     <body>
         <header th:fragment="kopf">
+            <div class="header">
             <a class="hUsr" th:text="#{kopf.benutzer}">Benutzer</a>
             <a th:href="@{?sprache=de}">DE</a>
             <a th:href="@{?sprache=nl}">NL</a>
             <a th:href="@{?sprache=en}">EN</a>
+        </div>
+        <div th:if="${info != null and info != ''}">
+            <span th:text="${info}" class="errorText">Fehlermeldung...</span>
+        </div>
         </header>
         <footer th:fragment="fuss">
             <a class="impressum" th:text="#{fuss.impressum}">Impressum</a>
