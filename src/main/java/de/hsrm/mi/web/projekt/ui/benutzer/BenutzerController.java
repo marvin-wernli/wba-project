@@ -20,6 +20,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -67,7 +71,21 @@ public class BenutzerController {
         return "benutzerbearbeiten";
     }
 
+    @GetMapping("")
+    public String showBenutzerListe(Model model) {
+        List <Benutzer> benutzerList = new ArrayList<>();
+        benutzerList = benutzerService.holeAlleBenutzer();
+        model.addAttribute("benutzerList", benutzerList);
+        return "benutzerliste";
+    }
 
+    @GetMapping("/{n}/del")
+    public String deleteUser(@PathVariable("n") Long userID) {
+        benutzerService.loescheBenutzerMitId(userID);
+        return "redirect:/benutzer";
+    }
+    
+    
     @PostMapping("/{n}")
     public String submitForm(   @Valid @ModelAttribute("form") BenutzerFormular form,
                                 BindingResult result,

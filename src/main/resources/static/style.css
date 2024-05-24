@@ -121,3 +121,19 @@ p{
 .form-row {
   width: 100%;
 }
+
+.userLst{
+  display: flex;
+  list-style: none;
+}
+.userLst p {
+  padding: 5px;
+  font-size: 14pt;
+  width: 100%;
+}
+.userLst form input {
+  margin: 5px;
+  font-size: 14pt;
+  border-radius: 10px;
+  width: 100%;
+}

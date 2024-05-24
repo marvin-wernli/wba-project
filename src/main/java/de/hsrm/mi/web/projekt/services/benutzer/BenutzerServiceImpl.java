@@ -30,7 +30,7 @@ public class BenutzerServiceImpl implements BenutzerService {
     @Override @Transactional
     public Optional<Benutzer> holeBenutzerMitId(long id) {
         return benutzerRepository.findById(id);
-   }
+    }
 
     @Override @Transactional
     public Benutzer speichereBenutzer(Benutzer b) {

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MIfahrzentrale</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+    <div>
+        <article th:insert="~{fragments/kopffuss :: kopf}"></article>
+    </div>
+
+    <div class="border">
+        <h1 th:text="#{benutzerliste.titel}"></h1>
+        <ul th:each="user : ${benutzerList}">
+            <li class="userLst">
+                <p th:text="${user.id}"></p>
+                <p th:text="${user.name}"></p>
+                <p th:text="${user.mail}"></p>
+                <form th:action="@{'/benutzer/' + ${user.id}}" method="get">
+                    <input class="submit" type="submit" th:value="#{benutzerliste.eintrag.bearbeiten}">
+                </form>
+                <form th:action="@{'/benutzer/' + ${user.id} + '/del'}" method="get">
+                    <input class="submit" type="submit" th:value="#{benutzerliste.eintrag.loeschen}">
+                </form>
+            </li>
+        </ul>
+        <form th:action="@{'/benutzer/0'}">
+            <input class="submit" type="submit" th:value="#{benutzerliste.neu}">
+        </form>
+    </div>
+
+    <div>
+        <article th:insert="~{fragments/kopffuss :: fuss}"></article>
+    </div>
+</body>
