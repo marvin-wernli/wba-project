@@ -60,6 +60,10 @@ public class BenutzerController {
         }
         
         model.addAttribute("userID",userID);
+        //
+        model.addAttribute("benutzer", benutzer);
+        model.addAttribute("form", form);
+        //
         return "benutzerbearbeiten";
     }
 
@@ -67,6 +71,7 @@ public class BenutzerController {
     @PostMapping("/{n}")
     public String submitForm(   @Valid @ModelAttribute("form") BenutzerFormular form,
                                 BindingResult result,
+                                @ModelAttribute("benutzer") Benutzer benutzer,
                                 @ModelAttribute("info") String info,
                                 @RequestParam("like") String like,
                                 @RequestParam("dislike") String dislike,
@@ -81,26 +86,25 @@ public class BenutzerController {
             result.rejectValue("password", "benutzer.password.ungesetzt", "Passwort wurde noch nicht gesetzt");
         }
         if (result.hasErrors()){
-            logger.error("Mit errors:" + form.getPassword() + form.getName());
+            logger.error("Mit errors:" + benutzer.getPassword() + benutzer.getName());
             // Er soll auf Seite mit Fehlermeldung geleitet.
             return "benutzerbearbeiten";
         }
-
-        Benutzer newBenutzer = new Benutzer();
-        form.toBenutzer(newBenutzer);
-        newBenutzer.setPassword(form.getPassword());
+        
+        form.toBenutzer(benutzer);
+        benutzer.setPassword(form.getPassword());
+        
         try {
-            newBenutzer = benutzerService.speichereBenutzer(newBenutzer);
-            info = null;
+            benutzer = benutzerService.speichereBenutzer(benutzer);
+            model.addAttribute("info", null);
+            logger.error("Passwort: " + benutzer.getPassword());;
+            return "redirect:" + benutzer.getId();
         } catch (Exception e) {
             info = e.toString();
-            if (info.isEmpty()) {
-                info = null;
-            }   
             model.addAttribute("info", info);
-            logger.error("Fehler: ", info);
-        }        
-        logger.error("Ohne errors: " + newBenutzer.getPassword() + newBenutzer.getName());
+            logger.error("Fehler beim Speichern des Benutzers: ", e);
+        }    
+
         return "benutzerbearbeiten";
     }
     

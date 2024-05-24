@@ -63,9 +63,19 @@ public class Benutzer {
     public Set<String> getLikes() {
         return likes;
     }
+
+    public void setLikes(Set<String> likes){
+        this.likes = likes;
+    }
+
     public Set<String> getDislikes() {
         return dislikes;
     }
+
+    public void setDislikes(Set<String> dislikes){
+        this.dislikes = dislikes;
+    }
+
     public String getName() {
         return name;
     }
