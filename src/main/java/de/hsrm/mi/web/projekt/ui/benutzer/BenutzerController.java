@@ -28,8 +28,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Controller
-// Glaub Praktikum leute meinten das sei unnötig 
-@RequestMapping("/benutzer")
 @SessionAttributes(names = {"form","userID","maxwunsch","benutzer"})
 public class BenutzerController {
 
@@ -50,7 +48,7 @@ public class BenutzerController {
 
     // n mit dieser zahl ersetzen
     // Wildcard für # ausgleich? Folie 39.
-    @GetMapping("/{n}")
+    @GetMapping("/benutzer/{n}")
     public String showBenutzerBearbeiten(@PathVariable("n") Long userID, @ModelAttribute("form") BenutzerFormular form, @ModelAttribute("benutzer") Benutzer benutzer, Model model) {
         
         if (userID == 0) {
@@ -64,14 +62,12 @@ public class BenutzerController {
         }
         
         model.addAttribute("userID",userID);
-        //
         model.addAttribute("benutzer", benutzer);
         model.addAttribute("form", form);
-        //
         return "benutzerbearbeiten";
     }
 
-    @GetMapping("")
+    @GetMapping("/benutzer")
     public String showBenutzerListe(Model model) {
         List <Benutzer> benutzerList = new ArrayList<>();
         benutzerList = benutzerService.holeAlleBenutzer();
@@ -79,18 +75,19 @@ public class BenutzerController {
         return "benutzerliste";
     }
 
-    @GetMapping("/{n}/del")
+    @GetMapping("/benutzer/{n}/del")
     public String deleteUser(@PathVariable("n") Long userID) {
         benutzerService.loescheBenutzerMitId(userID);
         return "redirect:/benutzer";
     }
     
     
-    @PostMapping("/{n}")
+    @PostMapping("/benutzer/{n}")
     public String submitForm(   @Valid @ModelAttribute("form") BenutzerFormular form,
                                 BindingResult result,
                                 @ModelAttribute("benutzer") Benutzer benutzer,
                                 @ModelAttribute("info") String info,
+                                
                                 @RequestParam("like") String like,
                                 @RequestParam("dislike") String dislike,
                                 Model model   ) {
@@ -100,7 +97,7 @@ public class BenutzerController {
         if (!like.equals("") && like != null) {
             form.addLikes(like);
         }
-        if (form.getPassword() == null || form.getPassword().isEmpty()) {
+        if ( benutzer.getPassword() == null || benutzer.getPassword().isEmpty()) {
             result.rejectValue("password", "benutzer.password.ungesetzt", "Passwort wurde noch nicht gesetzt");
         }
         if (result.hasErrors()){
