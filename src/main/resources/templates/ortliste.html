@@ -13,7 +13,27 @@
 
     <div class="border">
         <h1 th:text="#{ortsliste.titel}"></h1>
-        
+        <ul th:each="ort : ${ortList}">
+            <li class="userLst">
+                <p th:text="${ort.id}"></p>
+                <p th:text="${ort.name}"></p>
+                <p th:text="${ort.geobreite}"></p>
+                <p th:text="${ort.geolaenge}"></p>
+                <form th:action="@{'/ort/' + ${ort.id}}" method="get">
+                    <input class="submit" type="submit" th:value="#{ortsliste.eintrag.bearbeiten}">
+                </form>
+                <!-- {id}/del GET noch nicht drin 
+
+                <form th:action="@{'/ort/' + ${ort.id} + '/del'}" method="get">
+                    <input class="submit" type="submit" th:value="#{ortsliste.eintrag.loeschen}">
+                </form>
+
+                -->
+            </li>
+        </ul>
+        <form th:action="@{'/ort/0'}">
+            <input class="submit" type="submit" th:value="#{ortsliste.neu}">
+        </form>
     </div>
 
     <div>
