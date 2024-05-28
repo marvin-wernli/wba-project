@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MIfahrzentrale</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+    <div>
+        <article th:insert="~{fragments/kopffuss :: kopf}"></article>
+    </div>
+
+    <div class="border">
+
+        <h1 th:text="#{ortformular.titel(${ortsID})}">Ort <span th:text="${ortsID}"></span> bearbeiten...</h1>
+
+        <form th:action="@{#}" th:object="${form}" method="post">
+
+            <input type="hidden" id="ortsID" name="ortsID" th:value="${ortsID}">
+
+            <label th:text="#{ort.name}" for="name">Name</label>
+            <!-- 
+            <input type="text" id="name" name="name" th:field="*{name}" th:errorclass = "err">
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name falsch</p>
+            -->
+
+            <label th:text="#{ort.geobreite}" for="geobreite">geobreite</label>
+            <!-- 
+            <input type="text" id="geobreite" name="geobreite" th:field="*{geobreite}" th:errorclass = "err">
+            <p th:if="${#fields.hasErrors('geobreite')}" th:errors="*{geobreite}">geobreite falsch</p>
+            -->
+
+            <label th:text="#{ort.geolaenge}" for="geolaenge">geolaenge</label>
+            <!-- 
+            <input type="text" id="geolaenge" name="geolaenge" th:field="*{geolaenge}" th:errorclass = "err">
+            <p th:if="${#fields.hasErrors('geolaenge')}" th:errors="*{geolaenge}">geolaenge falsch</p>
+            -->
+
+            <input class="submit" type="submit" value="Ok">
+
+            <a th:text="#{ort.link.karte}">Karte</a>
+
+        </form>
+
+    </div>
+   
+
+
+
+    <div>
+        <article th:insert="~{fragments/kopffuss :: fuss}"></article>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MIfahrzentrale</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+    <div>
+        <article th:insert="~{fragments/kopffuss :: kopf}"></article>
+    </div>
+
+    <div class="border">
+        <h1 th:text="#{ortsliste.titel}"></h1>
+        
+    </div>
+
+    <div>
+        <article th:insert="~{fragments/kopffuss :: fuss}"></article>
+    </div>
+</body>
+</html>

@@ -40,8 +40,6 @@ public class BenutzerController {
         model.addAttribute("form", new BenutzerFormular());
     }
 
-    // n mit dieser zahl ersetzen
-    // Wildcard für # ausgleich? Folie 39.
     @GetMapping("/benutzer/{n}")
     public String showBenutzerBearbeiten(@PathVariable("n") Long userID, @ModelAttribute("form") BenutzerFormular form, @ModelAttribute("benutzer") Benutzer benutzer, Model model) {
         
