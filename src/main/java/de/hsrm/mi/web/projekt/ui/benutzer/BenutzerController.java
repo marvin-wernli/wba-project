@@ -1,27 +1,21 @@
 package de.hsrm.mi.web.projekt.ui.benutzer;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.context.annotation.SessionScope;
-
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.services.benutzer.BenutzerService;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -97,22 +91,22 @@ public class BenutzerController {
         if (!like.equals("") && like != null) {
             form.addLikes(like);
         }
-        if ( benutzer.getPassword() == null || benutzer.getPassword().isEmpty()) {
+        if ( benutzer.getPasswort() == null || benutzer.getPasswort().isEmpty()) {
             result.rejectValue("password", "benutzer.password.ungesetzt", "Passwort wurde noch nicht gesetzt");
         }
         if (result.hasErrors()){
-            logger.error("Mit errors:" + benutzer.getPassword() + benutzer.getName());
+            logger.error("Mit errors:" + benutzer.getPasswort() + benutzer.getName());
             // Er soll auf Seite mit Fehlermeldung geleitet.
             return "benutzerbearbeiten";
         }
         
         form.toBenutzer(benutzer);
-        benutzer.setPassword(form.getPassword());
+        benutzer.setPasswort(form.getPassword());
         
         try {
             benutzer = benutzerService.speichereBenutzer(benutzer);
             model.addAttribute("info", null);
-            logger.error("Passwort: " + benutzer.getPassword());;
+            logger.error("Passwort: " + benutzer.getPasswort());;
             return "redirect:" + benutzer.getId();
         } catch (Exception e) {
             info = e.toString();

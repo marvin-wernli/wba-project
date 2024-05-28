@@ -33,16 +33,16 @@ public class Benutzer {
 
     @NotNull
     @Email()
-    private String mail;
+    private String email;
 
     @NotNull
     @GutesPasswort(message="{gutespasswort.fehler}")
-    private String password;
+    private String passwort;
 
     @NotNull
     @Past()
     @DateTimeFormat(iso=ISO.DATE)
-    private LocalDate birthdate;
+    private LocalDate geburtstag;
 
     @NotNull
     @ElementCollection
@@ -85,30 +85,30 @@ public class Benutzer {
     }
 
     public String getMail() {
-        return mail;
+        return email;
     }
 
     public void setMail(String mail) {
-        this.mail = mail;
+        this.email = mail;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswort() {
+        return passwort;
     }
 
-    public void setPassword(String password) {
-        if(password != null && !password.isEmpty()){
-            this.password = password;
+    public void setPasswort(String passwort) {
+        if(passwort != null && !passwort.isEmpty()){
+            this.passwort = passwort;
         }
         
     }
 
-    public LocalDate getBirthdate() {
-        return birthdate;
+    public LocalDate getGeburtstag() {
+        return geburtstag;
     }
 
-    public void setBirthdate(LocalDate birthdate) {
-        this.birthdate = birthdate;
+    public void setGeburtstag(LocalDate geburtstag) {
+        this.geburtstag = geburtstag;
     }
     
 }

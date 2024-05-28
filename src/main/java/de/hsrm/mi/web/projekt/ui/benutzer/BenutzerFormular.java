@@ -48,7 +48,7 @@ public class BenutzerFormular{
      */
     public void toBenutzer(Benutzer b) {
         b.setName(this.name);
-        b.setBirthdate(this.birthdate);
+        b.setGeburtstag(this.birthdate);
         b.setMail(this.mail);
         b.setLikes(this.likes);
         b.setDislikes(this.dislikes);
@@ -60,7 +60,7 @@ public class BenutzerFormular{
      */
     public void fromBenutzer(Benutzer b) {
         this.setName(b.getName());
-        this.setBirthdate(b.getBirthdate());
+        this.setBirthdate(b.getGeburtstag());
         this.setMail(b.getMail());
         this.likes = new HashSet<String>(b.getLikes());
         this.dislikes = new HashSet<String>(b.getDislikes());
