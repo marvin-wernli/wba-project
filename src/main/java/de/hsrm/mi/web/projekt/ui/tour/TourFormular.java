@@ -11,8 +11,8 @@ import de.hsrm.mi.web.projekt.entities.ort.Ort;
 import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
 public class TourFormular {
@@ -27,10 +27,10 @@ public class TourFormular {
     @DateTimeFormat(iso=ISO.DATE)
     private LocalDateTime abfahrDateTime;
 
-    @Size(min=0)
+    @Min(0)
     private int preis;
 
-    @Size(min=1)
+    @Min(0)
     private int plaetze;
 
     @Size(max=400)
