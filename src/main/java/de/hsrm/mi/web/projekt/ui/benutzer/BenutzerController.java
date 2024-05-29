@@ -89,6 +89,8 @@ public class BenutzerController {
         if (!like.equals("") && like != null) {
             form.addLikes(like);
         }
+
+        benutzer.setPasswort(form.getPassword());
         if ( benutzer.getPasswort() == null || benutzer.getPasswort().isEmpty()) {
             result.rejectValue("password", "benutzer.password.ungesetzt", "Passwort wurde noch nicht gesetzt");
         }
@@ -99,7 +101,6 @@ public class BenutzerController {
         }
         
         form.toBenutzer(benutzer);
-        benutzer.setPasswort(form.getPassword());
         
         try {
             benutzer = benutzerService.speichereBenutzer(benutzer);
