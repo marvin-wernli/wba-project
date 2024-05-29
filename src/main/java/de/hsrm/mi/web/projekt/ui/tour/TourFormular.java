@@ -4,12 +4,15 @@ import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import de.hsrm.mi.web.projekt.entities.ort.Ort;
 import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
 public class TourFormular {
@@ -21,6 +24,7 @@ public class TourFormular {
     @Version
     private long version;
 
+    @DateTimeFormat(iso=ISO.DATE)
     private LocalDateTime abfahrDateTime;
 
     @Size(min=0)
