@@ -56,7 +56,7 @@ public class BenutzerController {
         model.addAttribute("userID",userID);
         model.addAttribute("benutzer", benutzer);
         model.addAttribute("form", form);
-        return "benutzerbearbeiten";
+        return "benutzer/benutzerbearbeiten";
     }
 
     @GetMapping("/benutzer")
@@ -64,7 +64,7 @@ public class BenutzerController {
         List <Benutzer> benutzerList = new ArrayList<>();
         benutzerList = benutzerService.holeAlleBenutzer();
         model.addAttribute("benutzerList", benutzerList);
-        return "benutzerliste";
+        return "benutzer/benutzerliste";
     }
 
     @GetMapping("/benutzer/{n}/del")
@@ -97,7 +97,7 @@ public class BenutzerController {
         if (result.hasErrors()){
             logger.error("Mit errors:" + benutzer.getPasswort() + benutzer.getName());
             // Er soll auf Seite mit Fehlermeldung geleitet.
-            return "benutzerbearbeiten";
+            return "benutzer/benutzerbearbeiten";
         }
         
         form.toBenutzer(benutzer);
@@ -113,7 +113,7 @@ public class BenutzerController {
             logger.error("Fehler beim Speichern des Benutzers: ", e);
         }    
 
-        return "benutzerbearbeiten";
+        return "benutzer/benutzerbearbeiten";
     }
     
 }
