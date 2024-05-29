@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MIfahrzentrale</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+    <div>
+        <article th:insert="~{fragments/kopffuss :: kopf}"></article>
+    </div>
+
+    <div class="border">
+<!--
+        <h1 th:text="#{tourformular.titel(${tourID})}">Ort <span th:text="${ortsID}"></span> bearbeiten...</h1>
+
+        <form th:action="@{#}" th:object="${tourForm}" method="post"></form>
+
+            <input type="hidden" id="tourID" name="tourID" th:value="${tourID}">
+
+            
+                <select name="" id=""></select>
+            
+
+            <label th:text="#{tour.abfahrdatetime}" for="abfahrdatetime">Abfahrtzeitpunkt</label>
+            <input type="date" id="abfahrDateTime" name="abfahrDateTime" th:field="*{abfahrDateTime}" th:errorclass = "err">
+
+            <input type="text" id="preis" name="preis" th:field="*{preis}" th:errorclass = "err">
+            <p th:if="${#fields.hasErrors('preis')}" th:errors="*{preis}">preis falsch</p>
+            
+            <input type="text" id="plaetze" name="plaetze" th:field="*{plaetze}" th:errorclass = "err">
+            <p th:if="${#fields.hasErrors('plaetze')}" th:errors="*{plaetze}">plaetze falsch</p>
+
+            <div class="wrapper">
+                <div class="form-row">
+                    <label th:text="#{tour.startort}" for="startOrt">Standort</label><br>
+                    <input type="text" id="startOrt" name="startOrt">
+                    <p th:if="${#fields.hasErrors('startOrt')}" th:errors="*{startOrt}">plaetze falsch</p>
+
+                </div>
+                <div >
+                    <label th:text="#{tour.zielort}" for="zielOrt">Zielort</label><br>
+                    <input type="text" id="zielOrt" name="zielOrt">
+                    <p th:if="${#fields.hasErrors('zielOrt')}" th:errors="*{zielOrt}">plaetze falsch</p>
+
+                </div>
+            </div>
+
+            <input type="text" id="info" name="info" th:field="*{info}" th:errorclass = "err">
+            <p th:if="${#fields.hasErrors('info')}" th:errors="*{info}">info überschreitet laenge</p>
+        -->
+    </div>
+
+    
+    <div>
+        <article th:insert="~{fragments/kopffuss :: fuss}"></article>
+    </div>
+</body>
+</html>

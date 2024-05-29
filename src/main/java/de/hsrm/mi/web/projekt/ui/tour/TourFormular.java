@@ -6,7 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 
 import de.hsrm.mi.web.projekt.entities.ort.Ort;
-import de.hsrm.mi.web.projekt.entities.ort.tour.Tour;
+import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
