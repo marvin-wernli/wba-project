@@ -56,7 +56,7 @@ public class OrtController {
         model.addAttribute("ort", ort);
         model.addAttribute("ortForm", ortForm);
 
-        return "ortbearbeiten";
+        return "ort/ortbearbeiten";
     }
 
     @GetMapping("/ort")
@@ -64,7 +64,7 @@ public class OrtController {
         List <Ort> ortList = new ArrayList<>();
         ortList = ortService.holeAlleOrte();
         model.addAttribute("ortList", ortList);
-        return "ortliste";
+        return "ort/ortliste";
     }
 
     @GetMapping("/ort/{n}/del")
@@ -80,7 +80,7 @@ public class OrtController {
                                 @ModelAttribute("ort") Ort ort,
                                 Model model) {
         if (result.hasErrors()) {
-            return "ortbearbeiten";
+            return "ort/ortbearbeiten";
         }
 
         ortForm.toOrt(ort);
@@ -92,7 +92,7 @@ public class OrtController {
             logger.error("Fehler beim Speichern des Ortes: ", e);
         }
         
-        return "ortbearbeiten";
+        return "ort/ortbearbeiten";
     }
     
 }
