@@ -12,44 +12,49 @@
     </div>
 
     <div class="border">
-<!--
-        <h1 th:text="#{tourformular.titel(${tourID})}">Ort <span th:text="${ortsID}"></span> bearbeiten...</h1>
 
-        <form th:action="@{#}" th:object="${tourForm}" method="post"></form>
+        <h1 th:text="#{tourformular.titel(${tourID})}">Ort <span th:text="${tourID}"></span> bearbeiten...</h1>
+
+        <form th:action="@{#}" th:object="${tourForm}" method="post">
 
             <input type="hidden" id="tourID" name="tourID" th:value="${tourID}">
 
-            
-                <select name="" id=""></select>
-            
-
+            <!--
+            <select name="" id=""></select>
+            -->
+                
             <label th:text="#{tour.abfahrdatetime}" for="abfahrdatetime">Abfahrtzeitpunkt</label>
             <input type="date" id="abfahrDateTime" name="abfahrDateTime" th:field="*{abfahrDateTime}" th:errorclass = "err">
-
+            
+            <label th:text="#{tour.preis}" for="preis">Preis</label>
             <input type="text" id="preis" name="preis" th:field="*{preis}" th:errorclass = "err">
             <p th:if="${#fields.hasErrors('preis')}" th:errors="*{preis}">preis falsch</p>
             
+            <label th:text="#{tour.plaetze}" for="plaetze">Plätze</label>
             <input type="text" id="plaetze" name="plaetze" th:field="*{plaetze}" th:errorclass = "err">
             <p th:if="${#fields.hasErrors('plaetze')}" th:errors="*{plaetze}">plaetze falsch</p>
 
             <div class="wrapper">
                 <div class="form-row">
                     <label th:text="#{tour.startort}" for="startOrt">Standort</label><br>
-                    <input type="text" id="startOrt" name="startOrt">
-                    <p th:if="${#fields.hasErrors('startOrt')}" th:errors="*{startOrt}">plaetze falsch</p>
+                    
+                    <p th:if="${#fields.hasErrors('startOrt')}" th:errors="*{startOrt}">standort falsch</p>
 
                 </div>
                 <div >
                     <label th:text="#{tour.zielort}" for="zielOrt">Zielort</label><br>
-                    <input type="text" id="zielOrt" name="zielOrt">
-                    <p th:if="${#fields.hasErrors('zielOrt')}" th:errors="*{zielOrt}">plaetze falsch</p>
+                    
+                    <p th:if="${#fields.hasErrors('zielOrt')}" th:errors="*{zielOrt}">zielort falsch</p>
 
                 </div>
             </div>
 
+            <label th:text="#{tour.fahrgastinfos}" for="info">Info</label>
             <input type="text" id="info" name="info" th:field="*{info}" th:errorclass = "err">
             <p th:if="${#fields.hasErrors('info')}" th:errors="*{info}">info überschreitet laenge</p>
-        -->
+
+
+        </form>
     </div>
 
     
