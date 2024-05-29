@@ -37,5 +37,69 @@ public class Tour {
     @OneToOne
     private Ort zielOrt;
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getVersion() {
+        return version;
+    }
+
+    public void setVersion(long version) {
+        this.version = version;
+    }
+
+    public LocalDateTime getAbfahrDateTime() {
+        return abfahrDateTime;
+    }
+
+    public void setAbfahrDateTime(LocalDateTime abfahrDateTime) {
+        this.abfahrDateTime = abfahrDateTime;
+    }
+
+    public int getPreis() {
+        return preis;
+    }
+
+    public void setPreis(int preis) {
+        this.preis = preis;
+    }
+
+    public int getPlaetze() {
+        return plaetze;
+    }
+
+    public void setPlaetze(int plaetze) {
+        this.plaetze = plaetze;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public Ort getStartOrt() {
+        return startOrt;
+    }
+
+    public void setStartOrt(Ort startOrt) {
+        this.startOrt = startOrt;
+    }
+
+    public Ort getZielOrt() {
+        return zielOrt;
+    }
+
+    public void setZielOrt(Ort zielOrt) {
+        this.zielOrt = zielOrt;
+    }
+
     
 }

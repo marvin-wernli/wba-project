@@ -36,7 +36,7 @@
 
             <input class="submit" type="submit" value="Ok">
 
-            <a th:text="#{ort.link.karte}">Karte</a>
+            <a th:text="#{ort.link.karte}" th:href="|https://www.openstreetmap.org/#map=14/${ort.geobreite}/${ort.geolaenge}|" target="_blank">Karte</a>
 
         </form>
 

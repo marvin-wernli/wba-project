@@ -20,6 +20,8 @@ import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @Controller
@@ -64,6 +66,13 @@ public class OrtController {
         model.addAttribute("ortList", ortList);
         return "ortliste";
     }
+
+    @GetMapping("/ort/{n}/del")
+    public String deleteOrt(@PathVariable("n") Long ortsID) {
+        ortService.loescheOrtMitId(ortsID);
+        return "redirect:/ort";
+    }
+    
     
     @PostMapping("/ort/{id}")
     public String submitOrtForm(@Valid @ModelAttribute("ortForm") OrtFormular ortForm,
