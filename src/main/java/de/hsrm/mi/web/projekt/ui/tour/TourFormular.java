@@ -44,6 +44,85 @@ public class TourFormular {
     public TourFormular(){}
 
     public void toTour(Tour t){
-        //TODO Fertig machen
+        t.setAbfahrDateTime(this.abfahrDateTime);
+        t.setPreis(this.preis);
+        t.setPlaetze(this.plaetze);
+        t.setInfo(this.info);
+        t.setStartOrt(this.startOrt);
+        t.setZielOrt(this.zielOrt);
     }
+
+    public void fromTour(Tour t){
+        this.setAbfahrDateTime(t.getAbfahrDateTime());
+        this.setPreis(t.getPreis());
+        this.setPlaetze(t.getPlaetze());
+        this.setInfo(t.getInfo());
+        this.setStartOrt(t.getStartOrt());
+        this.setZielOrt(t.getZielOrt());
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getVersion() {
+        return version;
+    }
+
+    public void setVersion(long version) {
+        this.version = version;
+    }
+
+    public LocalDateTime getAbfahrDateTime() {
+        return abfahrDateTime;
+    }
+
+    public void setAbfahrDateTime(LocalDateTime abfahrDateTime) {
+        this.abfahrDateTime = abfahrDateTime;
+    }
+
+    public int getPreis() {
+        return preis;
+    }
+
+    public void setPreis(int preis) {
+        this.preis = preis;
+    }
+
+    public int getPlaetze() {
+        return plaetze;
+    }
+
+    public void setPlaetze(int plaetze) {
+        this.plaetze = plaetze;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public Ort getStartOrt() {
+        return startOrt;
+    }
+
+    public void setStartOrt(Ort startOrt) {
+        this.startOrt = startOrt;
+    }
+
+    public Ort getZielOrt() {
+        return zielOrt;
+    }
+
+    public void setZielOrt(Ort zielOrt) {
+        this.zielOrt = zielOrt;
+    }
+    
 }
