@@ -19,12 +19,14 @@
 
             <input type="hidden" id="tourID" name="tourID" th:value="${tourID}">
 
-            <!--
-            <select name="" id=""></select>
-            -->
+            <label th:text="#{tour.anbieter}" for="anbieter">Anbieter</label>
+            <select name="anbieter" id="anbieter">
+                <option value="">---</option>
+                <option th:each="benutzer : ${benutzerList}" th:value="${benutzer.id}" th:text="${benutzer.name}"></option>
+            </select>
                 
             <label th:text="#{tour.abfahrdatetime}" for="abfahrdatetime">Abfahrtzeitpunkt</label>
-            <input type="date" id="abfahrDateTime" name="abfahrDateTime" th:field="*{abfahrDateTime}" th:errorclass = "err">
+            <input type="datetime-local" id="abfahrDateTime" name="abfahrDateTime" th:field="*{abfahrDateTime}" th:errorclass = "err">
             
             <label th:text="#{tour.preis}" for="preis">Preis</label>
             <input type="text" id="preis" name="preis" th:field="*{preis}" th:errorclass = "err">
@@ -36,14 +38,27 @@
 
             <div class="wrapper">
                 <div class="form-row">
+
                     <label th:text="#{tour.startort}" for="startOrt">Standort</label><br>
-                    
+                    <select name="startOrt" id="startOrt">
+
+                        <!-- Platzhalter für Pseudoeintrag -->
+                        <option value="">---</option>
+
+                        <option th:each="ort : ${ortList}" th:value="${ort.id}" th:text="${ort.name}"></option>
+                    </select>
                     <p th:if="${#fields.hasErrors('startOrt')}" th:errors="*{startOrt}">standort falsch</p>
 
                 </div>
                 <div >
                     <label th:text="#{tour.zielort}" for="zielOrt">Zielort</label><br>
-                    
+                    <select name="zielOrt" id="zielOrt">
+                        
+                        <!-- Platzhalter für Pseudoeintrag -->
+                        <option value="">---</option>
+
+                        <option th:each="ort : ${ortList}" th:value="${ort.id}" th:text="${ort.name}"></option>
+                    </select>
                     <p th:if="${#fields.hasErrors('zielOrt')}" th:errors="*{zielOrt}">zielort falsch</p>
 
                 </div>

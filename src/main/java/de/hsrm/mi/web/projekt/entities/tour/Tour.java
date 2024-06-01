@@ -2,6 +2,7 @@ package de.hsrm.mi.web.projekt.entities.tour;
 
 import java.time.LocalDateTime;
 
+import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.entities.ort.Ort;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -36,6 +37,8 @@ public class Tour {
     @NotNull
     @OneToOne
     private Ort zielOrt;
+
+    //private Benutzer anbieter;
 
     public long getId() {
         return id;
@@ -100,6 +103,14 @@ public class Tour {
     public void setZielOrt(Ort zielOrt) {
         this.zielOrt = zielOrt;
     }
+
+    /*public Benutzer getAnbieter() {
+        return anbieter;
+    }
+
+    public void setAnbieter(Benutzer anbieter) {
+        this.anbieter = anbieter;
+    }*/
 
     
 }

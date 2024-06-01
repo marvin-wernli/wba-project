@@ -26,6 +26,7 @@ public class OrtController {
 
     Logger logger = LoggerFactory.getLogger(OrtController.class);
     @Autowired private OrtService ortService;
+    
 
     @ModelAttribute("ort")
     public void initOrt(Model model) {

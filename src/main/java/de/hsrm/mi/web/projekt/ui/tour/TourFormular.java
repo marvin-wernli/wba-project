@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Version;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.entities.ort.Ort;
 import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import jakarta.persistence.GeneratedValue;
@@ -44,10 +45,12 @@ public class TourFormular {
     @OneToOne
     private Ort zielOrt;
 
+    //private Benutzer anbieter;
 
     public TourFormular(){}
 
     public void toTour(Tour t){
+        //t.setAnbieter(this.anbieter);
         t.setAbfahrDateTime(this.abfahrDateTime);
         t.setPreis(this.preis);
         t.setPlaetze(this.plaetze);
@@ -57,6 +60,7 @@ public class TourFormular {
     }
 
     public void fromTour(Tour t){
+        //this.setAnbieter(t.getAnbieter());
         this.setAbfahrDateTime(t.getAbfahrDateTime());
         this.setPreis(t.getPreis());
         this.setPlaetze(t.getPlaetze());
@@ -128,5 +132,13 @@ public class TourFormular {
     public void setZielOrt(Ort zielOrt) {
         this.zielOrt = zielOrt;
     }
+
+    /*public Benutzer getAnbieter() {
+        return anbieter;
+    }
+
+    public void setAnbieter(Benutzer anbieter) {
+        this.anbieter = anbieter;
+    }*/
     
 }

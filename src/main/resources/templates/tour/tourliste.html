@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MIfahrzentrale</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+    <div>
+        <article th:insert="~{fragments/kopffuss :: kopf}"></article>
+    </div>
+
+    <div class="border">
+        <h1 th:text="#{tourliste.titel}"></h1>
+        <ul th:each="tour : ${tourList}">
+            <li class="userLst">
+                <p th:text="${tour.id}"></p>
+                <p th:text="${tour.abfahrDateTime}"></p>
+                <p th:text="${tour.preis}"></p>
+                <p th:text="${tour.plaetze}"></p>
+                <p th:text="${tour.startOrt}"></p>
+                <p th:text="${tour.zielOrt}"></p>
+                <!--<p th:text="${tour.anbieter}"></p>-->
+                <form th:action="@{'/tour/' + ${tour.id}}" method="get">
+                    <input class="submit" type="submit" th:value="#{tourliste.eintrag.bearbeiten}">
+                </form>
+                <form th:action="@{'/tour/' + ${tour.id} + '/del'}" method="get">
+                    <input class="submit" type="submit" th:value="#{tourliste.eintrag.loeschen}">
+                </form>
+            </li>
+        </ul>
+        <form th:action="@{'/tour/0'}">
+            <input class="submit" type="submit" th:value="#{tourliste.neu}">
+        </form>
+    </div>
+
+    <div>
+        <article th:insert="~{fragments/kopffuss :: fuss}"></article>
+    </div>
+</body>
+</html>

@@ -1,6 +1,10 @@
 package de.hsrm.mi.web.projekt.ui.tour;
 
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,8 +16,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.entities.ort.Ort;
 import de.hsrm.mi.web.projekt.entities.tour.Tour;
+import de.hsrm.mi.web.projekt.services.benutzer.BenutzerService;
+import de.hsrm.mi.web.projekt.services.benutzer.BenutzerServiceImpl;
+import de.hsrm.mi.web.projekt.services.ort.OrtService;
 import de.hsrm.mi.web.projekt.services.tour.TourService;
 import de.hsrm.mi.web.projekt.ui.ort.OrtFormular;
 import jakarta.validation.Valid;
@@ -25,6 +33,8 @@ public class TourController {
     Logger logger = LoggerFactory.getLogger(TourController.class);
     // Tour Service Klasse einbinden @Autowired private TourService
     @Autowired private TourService tourService;
+    @Autowired private BenutzerService benutzerService;
+    @Autowired private OrtService ortService;
 
     @ModelAttribute("tour")
     public void initTour(Model model) {
@@ -37,8 +47,9 @@ public class TourController {
     }
 
     @GetMapping("/tour")
-    public String showTourListe(@ModelAttribute("tour") Tour tour, Model model) {
-
+    public String showTourListe(Model model) {
+        List <Tour> tourList = tourService.holeAlleTouren();
+        model.addAttribute("tourList", tourList);
         
         return "tour/tourliste";
     }
@@ -54,6 +65,11 @@ public class TourController {
             tourForm.fromTour(tour);
         }
 
+        List <Benutzer> benutzerList = benutzerService.holeAlleBenutzer();
+        List <Ort> ortList = ortService.holeAlleOrte();
+
+        model.addAttribute("ortList", ortList);
+        model.addAttribute("benutzerList", benutzerList);
         model.addAttribute("tourID", tourID);
         model.addAttribute("tour", tour);
         model.addAttribute("tourForm", tourForm);
