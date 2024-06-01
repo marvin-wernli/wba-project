@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.entities.ort.Ort;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -20,10 +21,10 @@ public class Tour {
 
     private LocalDateTime abfahrDateTime;
 
-    @Size(min=0)
+    @Min(0)
     private int preis;
 
-    @Size(min=1)
+    @Min(0)
     private int plaetze;
 
     @Size(max=400)

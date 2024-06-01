@@ -49,6 +49,9 @@ public class TourController {
     @GetMapping("/tour")
     public String showTourListe(Model model) {
         List <Tour> tourList = tourService.holeAlleTouren();
+
+        logger.info("Tour Liste: " + tourList);
+
         model.addAttribute("tourList", tourList);
         
         return "tour/tourliste";

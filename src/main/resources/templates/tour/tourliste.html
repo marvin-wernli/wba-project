@@ -19,8 +19,8 @@
                 <p th:text="${tour.abfahrDateTime}"></p>
                 <p th:text="${tour.preis}"></p>
                 <p th:text="${tour.plaetze}"></p>
-                <p th:text="${tour.startOrt}"></p>
-                <p th:text="${tour.zielOrt}"></p>
+                <p th:text="${tour.startOrt.name}"></p>
+                <p th:text="${tour.zielOrt.name}"></p>
                 <!--<p th:text="${tour.anbieter}"></p>-->
                 <form th:action="@{'/tour/' + ${tour.id}}" method="get">
                     <input class="submit" type="submit" th:value="#{tourliste.eintrag.bearbeiten}">
