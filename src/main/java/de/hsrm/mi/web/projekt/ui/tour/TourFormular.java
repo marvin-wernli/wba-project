@@ -14,6 +14,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 public class TourFormular {
@@ -37,15 +38,17 @@ public class TourFormular {
     @Size(max=400)
     private String info;
 
+    //@Positive
     @NotNull
     @OneToOne
     private Ort startOrt;
 
+    //@Positive
     @NotNull
     @OneToOne
     private Ort zielOrt;
 
-    //private Benutzer anbieter;
+    //@Positive private Benutzer anbieter;
 
     public TourFormular(){}
 

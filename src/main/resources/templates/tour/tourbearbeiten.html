@@ -43,7 +43,7 @@
                     <select name="startOrt" id="startOrt">
 
                         <!-- Platzhalter für Pseudoeintrag -->
-                        <option value="">---</option>
+                        <option disabled selected value="">---</option>
 
                         <option th:each="ort : ${ortList}" th:value="${ort.id}" th:text="${ort.name}"></option>
                     </select>
@@ -53,9 +53,9 @@
                 <div >
                     <label th:text="#{tour.zielort}" for="zielOrt">Zielort</label><br>
                     <select name="zielOrt" id="zielOrt">
-                        
+
                         <!-- Platzhalter für Pseudoeintrag -->
-                        <option value="">---</option>
+                        <option disabled selected value="">---</option>
 
                         <option th:each="ort : ${ortList}" th:value="${ort.id}" th:text="${ort.name}"></option>
                     </select>

@@ -31,7 +31,6 @@ import jakarta.validation.Valid;
 public class TourController {
     
     Logger logger = LoggerFactory.getLogger(TourController.class);
-    // Tour Service Klasse einbinden @Autowired private TourService
     @Autowired private TourService tourService;
     @Autowired private BenutzerService benutzerService;
     @Autowired private OrtService ortService;
@@ -68,11 +67,13 @@ public class TourController {
             tourForm.fromTour(tour);
         }
 
+        //Keine Ahnung ob das so Richtig ist mit der DB Abfrage :/
         List <Benutzer> benutzerList = benutzerService.holeAlleBenutzer();
         List <Ort> ortList = ortService.holeAlleOrte();
-
         model.addAttribute("ortList", ortList);
         model.addAttribute("benutzerList", benutzerList);
+        //
+
         model.addAttribute("tourID", tourID);
         model.addAttribute("tour", tour);
         model.addAttribute("tourForm", tourForm);
