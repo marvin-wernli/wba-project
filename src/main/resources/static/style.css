@@ -87,6 +87,7 @@ header a:hover{
 }
 
 .err {
+  color: red;
   border: 2px solid;
   border-radius: 10px;
   border-color: red;

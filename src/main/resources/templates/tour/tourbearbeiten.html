@@ -24,6 +24,7 @@
             <select name="anbieter" id="anbieter" th:field="*{anbieter}">
                 <option th:each="benutzer : ${benutzerList}" th:value="${benutzer.id}" th:text="${benutzer.name}"></option>
             </select>
+            <p th:if="${#fields.hasErrors('anbieter')}" th:errors="*{anbieter}">anbieter falsch</p>
                 
             <label th:text="#{tour.abfahrdatetime}" for="abfahrdatetime">Abfahrtzeitpunkt</label>
             <input type="datetime-local" id="abfahrDateTime" name="abfahrDateTime" th:field="*{abfahrDateTime}" th:errorclass = "err">

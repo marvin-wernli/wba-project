@@ -85,6 +85,9 @@ public class TourController {
                                 @ModelAttribute("tour") Tour tour,
                                 Model model) {
 
+        /*if ( tour.getAnbieter() == null || benutzer.getPasswort().isEmpty()) {
+            result.rejectValue("password", "benutzer.password.ungesetzt", "Passwort wurde noch nicht gesetzt");
+        }             */                
         if (result.hasErrors()) {
             befülleListe(model);
             model.addAttribute("tourID", tour.getId());
