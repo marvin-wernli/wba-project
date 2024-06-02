@@ -1,8 +1,12 @@
 package de.hsrm.mi.web.projekt.entities.ort;
 
+import org.hibernate.mapping.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Version;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
@@ -22,6 +26,7 @@ public class Ort {
     private String name;
     private double geobreite;
     private double geolaenge;
+
     public long getId() {
         return id;
     }

@@ -34,11 +34,11 @@ public class Tour {
 
     // TODO: Bin mir bei der Beziehung noch unsicher
     @NotNull
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Ort startOrt;
 
     @NotNull
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Ort zielOrt;
 
     @NotNull

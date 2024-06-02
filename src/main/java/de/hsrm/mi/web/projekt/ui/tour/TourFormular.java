@@ -26,7 +26,7 @@ public class TourFormular {
     @Version
     private long version;
 
-    @DateTimeFormat(iso=ISO.DATE)
+    @DateTimeFormat(iso=ISO.DATE_TIME)
     private LocalDateTime abfahrDateTime;
 
     @Min(0)

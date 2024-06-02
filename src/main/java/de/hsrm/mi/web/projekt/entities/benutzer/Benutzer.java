@@ -6,11 +6,14 @@ import java.util.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import de.hsrm.mi.web.projekt.validators.GutesPasswort;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Version;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -51,6 +54,9 @@ public class Benutzer {
     @NotNull
     @ElementCollection
     private Set<String> dislikes = new HashSet<String>();
+
+    @OneToMany(mappedBy = "anbieter", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Tour> angeboteneTouren;
 
     public long getId() {
         return id;
@@ -115,4 +121,11 @@ public class Benutzer {
         this.geburtstag = geburtstag;
     }
     
+    public List<Tour> getAngeboteneTouren(){
+        return angeboteneTouren;
+    }
+
+    public void setAngeboteneTouren(List <Tour> angeboteneTouren){
+        this.angeboteneTouren = angeboteneTouren;
+    }
 }

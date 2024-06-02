@@ -21,7 +21,7 @@
             <input type="hidden" id="tourID" name="tourID" th:value="${tourID}">
 
             <label th:text="#{tour.anbieter}" for="anbieter">Anbieter</label>
-            <select name="anbieter" id="anbieter">
+            <select name="anbieter" id="anbieter" th:field="*{anbieter}">
                 <option th:each="benutzer : ${benutzerList}" th:value="${benutzer.id}" th:text="${benutzer.name}"></option>
             </select>
                 
@@ -40,16 +40,16 @@
                 <div class="form-row">
 
                     <label th:text="#{tour.startort}" for="startOrt">Standort</label><br>
-                    <select name="startOrt" id="startOrt">
+                    <select name="startOrt" id="startOrt" th:field="*{startOrt}">
                         <option th:each="ort : ${ortList}" th:value="${ort.id}" th:text="${ort.name}"></option>
                     </select>
                     <p th:if="${#fields.hasErrors('startOrt')}" th:errors="*{startOrt}">standort falsch</p>
 
                 </div>
                 <div >
-                    
+
                     <label th:text="#{tour.zielort}" for="zielOrt">Zielort</label><br>
-                    <select name="zielOrt" id="zielOrt">
+                    <select name="zielOrt" id="zielOrt" th:field="*{zielOrt}">
                         <option th:each="ort : ${ortList}" th:value="${ort.id}" th:text="${ort.name}"></option>
                     </select>
                     <p th:if="${#fields.hasErrors('zielOrt')}" th:errors="*{zielOrt}">zielort falsch</p>

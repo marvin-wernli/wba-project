@@ -5,7 +5,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
+import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import de.hsrm.mi.web.projekt.validators.GutesPasswort;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
@@ -30,6 +33,8 @@ public class BenutzerFormular{
     private Set<String> likes;
     private Set<String> dislikes;
 
+    private List<Tour> angeboteneTouren;
+
     public BenutzerFormular() {
         this.likes = new HashSet<String>();
         this.dislikes = new HashSet<String>();
@@ -52,6 +57,7 @@ public class BenutzerFormular{
         b.setMail(this.mail);
         b.setLikes(this.likes);
         b.setDislikes(this.dislikes);
+        b.setAngeboteneTouren(this.angeboteneTouren);
     }
 
     /**
@@ -64,6 +70,15 @@ public class BenutzerFormular{
         this.setMail(b.getMail());
         this.likes = new HashSet<String>(b.getLikes());
         this.dislikes = new HashSet<String>(b.getDislikes());
+        this.setAngeboteneTouren(b.getAngeboteneTouren());
+    }
+
+    public List<Tour> getAngeboteneTouren() {
+        return angeboteneTouren;
+    }
+
+    public void setAngeboteneTouren(List<Tour> angeboteneTouren) {
+        this.angeboteneTouren = angeboteneTouren;
     }
 
     public Set<String> getLikes() {
@@ -103,6 +118,5 @@ public class BenutzerFormular{
     public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
     }
-
     
 }
