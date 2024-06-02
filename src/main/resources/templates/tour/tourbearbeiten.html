@@ -12,8 +12,9 @@
     </div>
 
     <div class="border">
-
-        <h1 th:text="#{tourformular.titel(${tourID})}">Ort <span th:text="${tourID}"></span> bearbeiten...</h1>
+        
+        <h1 th:if="${tourID} == 0">Neue Tour...</h1>
+        <h1 th:if="${tourID gt 0 && tourID != null}" th:text="#{tourformular.titel(${tourID})}">Tour <span th:text="${tourID}"></span> bearbeiten...</h1>
 
         <form th:action="@{#}" th:object="${tourForm}" method="post">
 

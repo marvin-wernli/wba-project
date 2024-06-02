@@ -83,6 +83,7 @@ public class BenutzerController {
                                 @RequestParam("like") String like,
                                 @RequestParam("dislike") String dislike,
                                 Model model   ) {
+
         if (!dislike.equals("") && dislike != null){
             form.addDislikes(dislike);
         }
@@ -91,6 +92,7 @@ public class BenutzerController {
         }
 
         benutzer.setPasswort(form.getPassword());
+        
         if ( benutzer.getPasswort() == null || benutzer.getPasswort().isEmpty()) {
             result.rejectValue("password", "benutzer.password.ungesetzt", "Passwort wurde noch nicht gesetzt");
         }

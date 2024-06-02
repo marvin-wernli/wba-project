@@ -13,7 +13,8 @@
 
     <div class="border">
 
-        <h1 th:text="#{ortformular.titel(${ortsID})}">Ort <span th:text="${ortsID}"></span> bearbeiten...</h1>
+        <h1 th:if="${ortsID} == 0">Neuer Ort...</h1>
+        <h1 th:if="${ortsID gt 0 && ortsID != null}" th:text="#{ortformular.titel(${ortsID})}">Ort <span th:text="${ortsID}"></span> bearbeiten...</h1>
 
         <form th:action="@{#}" th:object="${ortForm}" method="post">
 

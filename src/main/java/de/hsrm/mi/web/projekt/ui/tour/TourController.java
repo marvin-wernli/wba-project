@@ -20,10 +20,8 @@ import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.entities.ort.Ort;
 import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import de.hsrm.mi.web.projekt.services.benutzer.BenutzerService;
-import de.hsrm.mi.web.projekt.services.benutzer.BenutzerServiceImpl;
 import de.hsrm.mi.web.projekt.services.ort.OrtService;
 import de.hsrm.mi.web.projekt.services.tour.TourService;
-import de.hsrm.mi.web.projekt.ui.ort.OrtFormular;
 import jakarta.validation.Valid;
 
 @Controller
@@ -48,11 +46,8 @@ public class TourController {
     @GetMapping("/tour")
     public String showTourListe(Model model) {
         List <Tour> tourList = tourService.holeAlleTouren();
-
         logger.info("Tour Liste: " + tourList);
-
         model.addAttribute("tourList", tourList);
-        
         return "tour/tourliste";
     }
 
@@ -72,7 +67,6 @@ public class TourController {
         List <Ort> ortList = ortService.holeAlleOrte();
         model.addAttribute("ortList", ortList);
         model.addAttribute("benutzerList", benutzerList);
-        //
 
         model.addAttribute("tourID", tourID);
         model.addAttribute("tour", tour);
@@ -92,11 +86,13 @@ public class TourController {
                                 BindingResult result,
                                 @ModelAttribute("tour") Tour tour,
                                 Model model) {
+
         if (result.hasErrors()) {
             return "tour/tourbearbeiten";
         }
 
         tourForm.toTour(tour);
+
         try {
             tour = tourService.speichereTouren(tour);
             return "redirect:" + tour.getId();

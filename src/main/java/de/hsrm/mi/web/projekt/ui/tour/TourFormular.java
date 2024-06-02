@@ -48,12 +48,12 @@ public class TourFormular {
     @OneToOne
     private Ort zielOrt;
 
-    //@Positive private Benutzer anbieter;
+    private Benutzer anbieter;
 
     public TourFormular(){}
 
     public void toTour(Tour t){
-        //t.setAnbieter(this.anbieter);
+        t.setAnbieter(this.anbieter);
         t.setAbfahrDateTime(this.abfahrDateTime);
         t.setPreis(this.preis);
         t.setPlaetze(this.plaetze);
@@ -63,7 +63,7 @@ public class TourFormular {
     }
 
     public void fromTour(Tour t){
-        //this.setAnbieter(t.getAnbieter());
+        this.setAnbieter(t.getAnbieter());
         this.setAbfahrDateTime(t.getAbfahrDateTime());
         this.setPreis(t.getPreis());
         this.setPlaetze(t.getPlaetze());
@@ -136,12 +136,12 @@ public class TourFormular {
         this.zielOrt = zielOrt;
     }
 
-    /*public Benutzer getAnbieter() {
+    public Benutzer getAnbieter() {
         return anbieter;
     }
 
     public void setAnbieter(Benutzer anbieter) {
         this.anbieter = anbieter;
-    }*/
+    }
     
 }
