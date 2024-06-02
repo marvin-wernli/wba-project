@@ -7,6 +7,7 @@ import de.hsrm.mi.web.projekt.entities.ort.Ort;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -14,6 +15,7 @@ public class Tour {
 
     @Id
     @GeneratedValue
+    @Positive
     private long id;
 
     @Version
@@ -39,7 +41,9 @@ public class Tour {
     @OneToOne
     private Ort zielOrt;
 
-    //private Benutzer anbieter;
+    @NotNull
+    @ManyToOne
+    private Benutzer anbieter;
 
     public long getId() {
         return id;
@@ -105,13 +109,13 @@ public class Tour {
         this.zielOrt = zielOrt;
     }
 
-    /*public Benutzer getAnbieter() {
+    public Benutzer getAnbieter() {
         return anbieter;
     }
 
     public void setAnbieter(Benutzer anbieter) {
         this.anbieter = anbieter;
-    }*/
+    }
 
     
 }

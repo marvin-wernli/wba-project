@@ -37,17 +37,16 @@ public class TourFormular {
 
     @Size(max=400)
     private String info;
-
-    //@Positive
+    
     @NotNull
     @OneToOne
     private Ort startOrt;
 
-    //@Positive
     @NotNull
     @OneToOne
     private Ort zielOrt;
 
+    @NotNull
     private Benutzer anbieter;
 
     public TourFormular(){}

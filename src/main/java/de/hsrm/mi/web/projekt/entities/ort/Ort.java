@@ -5,12 +5,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Version;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 public class Ort {
 
     @Id
     @GeneratedValue
+    @Positive
     private long id;
 
     @Version

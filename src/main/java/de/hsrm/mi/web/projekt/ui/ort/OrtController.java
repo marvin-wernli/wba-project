@@ -77,6 +77,7 @@ public class OrtController {
                                 @ModelAttribute("ort") Ort ort,
                                 Model model) {
         if (result.hasErrors()) {
+            model.addAttribute("ortsID", ort.getId());
             return "ort/ortbearbeiten";
         }
 

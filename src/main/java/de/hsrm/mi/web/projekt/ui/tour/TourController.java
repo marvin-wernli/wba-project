@@ -8,6 +8,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -62,11 +64,7 @@ public class TourController {
             tourForm.fromTour(tour);
         }
 
-        //Keine Ahnung ob das so Richtig ist mit der DB Abfrage :/
-        List <Benutzer> benutzerList = benutzerService.holeAlleBenutzer();
-        List <Ort> ortList = ortService.holeAlleOrte();
-        model.addAttribute("ortList", ortList);
-        model.addAttribute("benutzerList", benutzerList);
+        befülleListe(model);
 
         model.addAttribute("tourID", tourID);
         model.addAttribute("tour", tour);
@@ -88,19 +86,41 @@ public class TourController {
                                 Model model) {
 
         if (result.hasErrors()) {
+            befülleListe(model);
+            model.addAttribute("tourID", tour.getId());
             return "tour/tourbearbeiten";
         }
 
-        tourForm.toTour(tour);
+        //tourForm.toTour(tour);
 
         try {
-            tour = tourService.speichereTouren(tour);
+            // tour = tourService.speichereTouren(tour);
+            tourService.speichereTourangebot(tourForm.getAnbieter().getId(), tour, tourForm.getStartOrt().getId(), tourForm.getZielOrt().getId());
             return "redirect:" + tour.getId();
         } catch (Exception e) {
             logger.error("Fehler beim Speichern der Tour: ", e);
         }
         
         return "tour/tourbearbeiten";
+    }
+
+    private void befülleListe(Model model){
+        Benutzer pseudoBenutzer = new Benutzer();
+        pseudoBenutzer.setName("---");
+        pseudoBenutzer.setId(0);
+
+        Ort pseudoOrt = new Ort();
+        pseudoOrt.setName("---");
+        pseudoOrt.setId(0);
+
+        List <Benutzer> benutzerList = benutzerService.holeAlleBenutzer();
+        benutzerList.add(0, pseudoBenutzer);
+
+        List <Ort> ortList = ortService.holeAlleOrte();
+        ortList.add(0, pseudoOrt);
+
+        model.addAttribute("ortList", ortList);
+        model.addAttribute("benutzerList", benutzerList);
     }
 
 }
