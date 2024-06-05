@@ -75,6 +75,9 @@ public class OrtController {
     public String submitOrtForm(@Valid @ModelAttribute("ortForm") OrtFormular ortForm,
                                 BindingResult result,
                                 @ModelAttribute("ort") Ort ort,
+                                @ModelAttribute("info") String info,
+                                @ModelAttribute("geobreite") double geobreite,
+                                @ModelAttribute("geolaenge") double geolaenge,
                                 Model model) {
         if (result.hasErrors()) {
             model.addAttribute("ortsID", ort.getId());
@@ -87,13 +90,25 @@ public class OrtController {
             if (ort.getGeobreite() == 0.0 && ort.getGeolaenge() == 0.0) {
                 List<Ort> ortVorschlag = ortService.findeOrtsvorschlaegeFuerAdresse(ort.getName());
                 
-                // Gibt ne OutOfBounds Exception, ortVorschlag wird also noch nicht richtig befüllt :/
-                //model.addAttribute("geobreite", ortVorschlag.get(0).getGeobreite());
-                //model.addAttribute("geolaenge", ortVorschlag.get(0).getGeolaenge());
-                //throw new Exception("Vorschlag bestätigen");
+                if (ortVorschlag.isEmpty()) {
+                    logger.info("Keine Ortsvorschlaege");
+                } else {
+
+                    ortForm.setGeobreite(ortVorschlag.get(0).getGeobreite());
+                    ortForm.setGeolaenge(ortVorschlag.get(0).getGeolaenge());
+                    model.addAttribute("ortForm", ortForm);
+                    
+                    info = "Vorschlag bestätigen";
+                    model.addAttribute("info", info);
+                    logger.error("Confirm GeoAddress");
+                }
+                
+            } else {
+                ort = ortService.speichereOrt(ort);
+                return "redirect:" + ort.getId();
             }
-            ort = ortService.speichereOrt(ort);
-            return "redirect:" + ort.getId();
+            
+
         } catch (Exception e) {
             logger.error("Fehler beim Speichern des Ortes: ", e);
         }

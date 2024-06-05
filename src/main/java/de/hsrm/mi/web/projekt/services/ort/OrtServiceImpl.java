@@ -52,7 +52,7 @@ public class OrtServiceImpl implements OrtService{
         List<GeoAdresse> geoList = geoService.findeAdressen(ort);
         List<Ort> resultList = new ArrayList<Ort>();
 
-        for(int i = 0; i <= geoList.size(); i++){
+        for(int i = 0; i < geoList.size(); i++){
             Ort newOrt = new Ort();
 
             newOrt.setName(geoList.get(i).name());
