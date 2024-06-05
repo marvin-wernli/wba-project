@@ -84,6 +84,14 @@ public class OrtController {
         ortForm.toOrt(ort);
 
         try {
+            if (ort.getGeobreite() == 0.0 && ort.getGeolaenge() == 0.0) {
+                List<Ort> ortVorschlag = ortService.findeOrtsvorschlaegeFuerAdresse(ort.getName());
+                
+                // Gibt ne OutOfBounds Exception, ortVorschlag wird also noch nicht richtig befüllt :/
+                //model.addAttribute("geobreite", ortVorschlag.get(0).getGeobreite());
+                //model.addAttribute("geolaenge", ortVorschlag.get(0).getGeolaenge());
+                //throw new Exception("Vorschlag bestätigen");
+            }
             ort = ortService.speichereOrt(ort);
             return "redirect:" + ort.getId();
         } catch (Exception e) {

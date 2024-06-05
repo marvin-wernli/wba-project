@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import reactor.core.publisher.Mono;
 
+@Service
 public class GeoServiceImpl implements GeoService {
 
     @Override @Transactional
     public List<GeoAdresse> findeAdressen(String ort) {
 
         List<GeoAdresse> addresses = new ArrayList<GeoAdresse>();
-
 
         if (ort == null) {
             // TODO: Error Loggen
@@ -29,11 +30,13 @@ public class GeoServiceImpl implements GeoService {
                     .collectList()
                     .block();
 
-        //TODO: 3. Punkt: adresstype city, town oder village
+        for(int i = 0; i <= antwort.size(); i++){
+            if (antwort.get(i).adresstype() == "city" || antwort.get(i).adresstype() == "town" || antwort.get(i).adresstype() == "village" ) {
+                addresses.add(antwort.get(i));
+            }
+        }
 
-        return null;
-
-
+        return addresses;
         
     }
 
