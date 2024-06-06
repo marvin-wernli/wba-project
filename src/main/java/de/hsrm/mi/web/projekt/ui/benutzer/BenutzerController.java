@@ -21,6 +21,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 @Controller
@@ -120,4 +122,18 @@ public class BenutzerController {
         return "benutzer/benutzerbearbeiten";
     }
     
+    //TODO: Inhalt für HTTP GET (Siehe Ende Blatt 5)
+    @GetMapping("/benutzer/{id}/hx/feld/{feldname}")
+    public String getFeldAusgeben(@PathVariable("id") Long userID, @PathVariable("feldname") String feldname, Model model) {
+        //Benutzer benutzer = benutzerService.holeBenutzerMitId(userID);
+        return new String();
+    }
+
+    //TODO: Inhalt für HTTP PUT (Siehe Blatt 6)
+    @PutMapping("/benutzer/{id}/hx/feld/{feldname}")
+    public String putFeldBearbeiten(@PathVariable String id, @RequestBody String entity) {
+        //TODO: process PUT request
+        
+        return entity;
+    }
 }

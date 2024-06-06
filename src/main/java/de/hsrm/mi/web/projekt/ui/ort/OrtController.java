@@ -91,7 +91,9 @@ public class OrtController {
                 List<Ort> ortVorschlag = ortService.findeOrtsvorschlaegeFuerAdresse(ort.getName());
                 
                 if (ortVorschlag.isEmpty()) {
-                    logger.info("Keine Ortsvorschlaege");
+                    info = "Keine Ortsvorschlaege gefunden";
+                    model.addAttribute("info", info);
+                    logger.error("No GeoAddress");
                 } else {
 
                     ortForm.setGeobreite(ortVorschlag.get(0).getGeobreite());

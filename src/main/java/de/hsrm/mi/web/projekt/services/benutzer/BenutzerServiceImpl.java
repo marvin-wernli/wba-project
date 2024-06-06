@@ -35,13 +35,27 @@ public class BenutzerServiceImpl implements BenutzerService {
     @Override @Transactional
     public Benutzer speichereBenutzer(Benutzer b) {
         return benutzerRepository.save(b);
-  }
+    }
 
     @Override @Transactional
     public void loescheBenutzerMitId(long id) {
         benutzerRepository.deleteById(id);
-   }
+    }
+    @Override @Transactional
+    public Benutzer aktualisiereBenutzerAttribut(long id, String feldname, String wert){
+    Optional<Benutzer> benutzer = benutzerRepository.findById(id);
 
-
-    
+    if (benutzer.isPresent()) {
+        Benutzer newBenutzer = benutzer.get();
+        
+        if (feldname.equals("name")) {
+            newBenutzer.setName(wert);
+            return newBenutzer;
+        } else if (feldname.equals("email")) {
+            newBenutzer.setMail(wert);
+            return newBenutzer;
+        }
+    }
+    return null;
+    }
 }

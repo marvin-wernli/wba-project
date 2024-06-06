@@ -1,12 +1,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <body>
         <td th:fragment="feldausgeben(benutzerid, feldname, wert)">
-            <span th:text="${wert}"></span>
+            <span th:hx-get="@{/benutzer/{id}/hx/feld/{feldname}(id=${benutzerid},feldname=${feldname})}" th:text="${wert}"></span>
         </td>
         <td th:fragment="feldbearbeiten(benutzerid, feldname, wert)">
             <form>
                 <input type="text" name="wert" th:value="${wert}">
-                <input class="submit" type="submit" value="Ok">
+                <input th:hx-put="@{/benutzer/{id}/hx/feld/{feldname}(id=${benutzerid},feldname=${feldname})}" class="submit" type="submit" value="Ok">
             </form>
         </td>
     </body>

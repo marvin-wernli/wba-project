@@ -11,6 +11,8 @@ import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 
         Benutzer speichereBenutzer(Benutzer b);
         void loescheBenutzerMitId(long id);
+
+        Benutzer aktualisiereBenutzerAttribut(long id, String feldname, String wert);
     }
     
 
