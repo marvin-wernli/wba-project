@@ -4,6 +4,7 @@
     <title>MIfahrzentrale</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/style.css}">
+    <script src="https://unpkg.com/htmx.org@1.9.12" integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -16,8 +17,11 @@
         <ul th:each="user : ${benutzerList}">
             <li class="userLst">
                 <p th:text="${user.id}"></p>
-                <p th:text="${user.name}"></p>
-                <p th:text="${user.mail}"></p>
+
+                <td th:replace="~{benutzer/benutzerliste-zeile :: feldausgeben((benutzerid=${user.id},feldname=name,wert=${user.name}))}"></td>
+
+                <td th:replace="~{benutzer/benutzerliste-zeile :: feldausgeben(benutzerid=${user.id},feldname=mail,wert=${user.mail})}"> </td>
+
                 <form th:action="@{'/benutzer/' + ${user.id}}" method="get">
                     <input class="submit" type="submit" th:value="#{benutzerliste.eintrag.bearbeiten}">
                 </form>

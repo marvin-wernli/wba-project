@@ -132,6 +132,13 @@ p{
   font-size: 14pt;
   width: 100%;
 }
+
+.userLst td {
+  margin: 5px;
+  font-size: 14pt;
+  width: 100%;
+}
+
 .userLst form input {
   margin: 5px;
   font-size: 14pt;
