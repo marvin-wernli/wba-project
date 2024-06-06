@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 @Controller
-@SessionAttributes(names = {"form","userID","maxwunsch","benutzer"})
+@SessionAttributes(names = {"form","userID","maxwunsch","benutzer, wert"})
 public class BenutzerController {
 
     private final int maxwunsch = 5;
@@ -122,18 +122,26 @@ public class BenutzerController {
         return "benutzer/benutzerbearbeiten";
     }
     
-    //TODO: Inhalt für HTTP GET (Siehe Ende Blatt 5)
+ 
     @GetMapping("/benutzer/{id}/hx/feld/{feldname}")
-    public String getFeldAusgeben(@PathVariable("id") Long userID, @PathVariable("feldname") String feldname, Model model) {
-        //Benutzer benutzer = benutzerService.holeBenutzerMitId(userID);
-        return new String();
+    public String getFeldAusgeben(@PathVariable("id") Long userID, @PathVariable("feldname") String feldname, @ModelAttribute("wert") String wert, Model model) {
+        Benutzer benutzer = benutzerService.holeBenutzerMitId(userID).get();
+
+        if (feldname.equals("email")) {
+            wert = benutzer.getMail();
+        } else if (feldname.equals("name")) {
+            wert = benutzer.getName();
+        }
+        model.addAttribute("wert",wert);
+
+        return "benutzer/benutzerliste-zeile :: feldbearbeiten";
     }
 
-    //TODO: Inhalt für HTTP PUT (Siehe Blatt 6)
+
     @PutMapping("/benutzer/{id}/hx/feld/{feldname}")
     public String putFeldBearbeiten(@PathVariable String id, @RequestBody String entity) {
         //TODO: process PUT request
         
-        return entity;
+        return "benutzer/benutzerliste-zeile :: feldbearbeiten";
     }
 }
