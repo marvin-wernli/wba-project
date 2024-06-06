@@ -139,9 +139,20 @@ public class BenutzerController {
 
 
     @PutMapping("/benutzer/{id}/hx/feld/{feldname}")
-    public String putFeldBearbeiten(@PathVariable String id, @RequestBody String entity) {
-        //TODO: process PUT request
-        
+    public String putFeldBearbeiten(@PathVariable("id") Long userID, @PathVariable("feldname") String feldname, @RequestParam("wert") String wert, @RequestBody String entity) {
+        benutzerService.aktualisiereBenutzerAttribut(userID,feldname,wert);
+        try {
+            benutzerService.aktualisiereBenutzerAttribut(userID,feldname,wert);
+            return "benutzer/benutzerliste-zeile :: feldausgeben";
+        } catch (Exception e) {
+            logger.error("Fehler beim aktualisieren des Benutzers: ", e);
+        }    
+        Benutzer benutzer = benutzerService.holeBenutzerMitId(userID).get();
+        if (feldname.equals("email")) {
+            wert = benutzer.getMail();
+        } else if (feldname.equals("name")) {
+            wert = benutzer.getName();
+        }
         return "benutzer/benutzerliste-zeile :: feldbearbeiten";
     }
 }
