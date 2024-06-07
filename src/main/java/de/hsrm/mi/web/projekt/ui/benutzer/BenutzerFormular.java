@@ -24,7 +24,7 @@ public class BenutzerFormular{
     private String mail;
 
     @GutesPasswort(message="{gutespasswort.fehler}")
-    private String password;
+    private String passwort;
 
     @Past()
     @DateTimeFormat(iso=ISO.DATE)
@@ -41,10 +41,14 @@ public class BenutzerFormular{
     }
 
     public void addLikes(String like){
+        if (!like.equals("") && like != null) {
             likes.add(like);
+        }
     }
     public void addDislikes(String dislike){
+        if (!dislike.equals("") && dislike != null) {
             dislikes.add(dislike);
+        }
     }
 
     /**
@@ -103,12 +107,14 @@ public class BenutzerFormular{
         this.mail = mail;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswort() {
+        return passwort;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswort(String passwort) {
+        if (passwort != null) {
+        this.passwort = passwort;
+        }
     }
 
     public LocalDate getGeburtstag() {

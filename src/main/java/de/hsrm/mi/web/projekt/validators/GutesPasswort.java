@@ -11,7 +11,7 @@ import java.lang.annotation.RetentionPolicy;
 
 @Target({ ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy=GutesPasswordValidator.class)
+@Constraint(validatedBy=GutespasswortValidator.class)
 public @interface GutesPasswort {
     Class<? extends Payload>[] payload() default { };
 

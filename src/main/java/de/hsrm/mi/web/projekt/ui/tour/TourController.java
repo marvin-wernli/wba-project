@@ -86,7 +86,7 @@ public class TourController {
                                 Model model) {
 
         /*if ( tour.getAnbieter() == null || benutzer.getPasswort().isEmpty()) {
-            result.rejectValue("password", "benutzer.password.ungesetzt", "Passwort wurde noch nicht gesetzt");
+            result.rejectValue("passwort", "benutzer.passwort.ungesetzt", "Passwort wurde noch nicht gesetzt");
         }             */                
         if (result.hasErrors()) {
             befülleListe(model);

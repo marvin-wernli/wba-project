@@ -46,7 +46,6 @@ public class BenutzerController {
 
     @GetMapping("/benutzer/{n}")
     public String showBenutzerBearbeiten(@PathVariable("n") Long userID, @ModelAttribute("form") BenutzerFormular form, @ModelAttribute("benutzer") Benutzer benutzer, Model model) {
-        
         if (userID == 0) {
             form = new BenutzerFormular();
             benutzer = new Benutzer();
@@ -56,7 +55,6 @@ public class BenutzerController {
             form.fromBenutzer(benutzer);
             logger.info("{}",form.getName());
         }
-        
         model.addAttribute("userID",userID);
         model.addAttribute("benutzer", benutzer);
         model.addAttribute("form", form);
@@ -89,17 +87,12 @@ public class BenutzerController {
                                 @RequestParam("dislike") String dislike,
                                 Model model   ) {
         
-        if (!dislike.equals("") && dislike != null){
-            form.addDislikes(dislike);
-        }
-        if (!like.equals("") && like != null) {
-            form.addLikes(like);
-        }
-        if (form.getPassword() != null) {
-            benutzer.setPasswort(form.getPassword());
-        }
+        form.addDislikes(dislike);
+        form.addLikes(like);
+        
+        benutzer.setPasswort(form.getPasswort());
         if ( benutzer.getPasswort() == null || benutzer.getPasswort().isEmpty()) {
-            result.rejectValue("password", "benutzer.password.ungesetzt", "Passwort wurde noch nicht gesetzt");
+            result.rejectValue("passwort", "benutzer.passwort.ungesetzt", "Passwort wurde noch nicht gesetzt");
         }
         if (result.hasErrors()){
             logger.error("Mit errors:" + benutzer.getPasswort() + benutzer.getName());
@@ -110,7 +103,6 @@ public class BenutzerController {
         try {
             benutzer = benutzerService.speichereBenutzer(benutzer);
             model.addAttribute("info", null);
-            logger.error("Passwort: " + benutzer.getPasswort());;
             return "redirect:" + benutzer.getId();
         } catch (Exception e) {
             info = e.toString();

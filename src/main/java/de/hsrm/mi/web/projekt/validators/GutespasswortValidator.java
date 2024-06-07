@@ -3,9 +3,9 @@ package de.hsrm.mi.web.projekt.validators;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class GutesPasswordValidator implements ConstraintValidator<GutesPasswort,String> {
+public class GutespasswortValidator implements ConstraintValidator<GutesPasswort,String> {
 
-    protected String password;
+    protected String passwort;
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
