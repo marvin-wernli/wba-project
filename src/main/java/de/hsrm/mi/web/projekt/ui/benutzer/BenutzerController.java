@@ -79,7 +79,8 @@ public class BenutzerController {
     
     
     @PostMapping("/benutzer/{n}")
-    public String submitForm(   @Valid @ModelAttribute("form") BenutzerFormular form,
+    public String submitForm(   
+                                @Valid @ModelAttribute("form") BenutzerFormular form,
                                 BindingResult result,
                                 @ModelAttribute("benutzer") Benutzer benutzer,
                                 @ModelAttribute("info") String info,
@@ -87,16 +88,16 @@ public class BenutzerController {
                                 @RequestParam("like") String like,
                                 @RequestParam("dislike") String dislike,
                                 Model model   ) {
-
+        
         if (!dislike.equals("") && dislike != null){
             form.addDislikes(dislike);
         }
         if (!like.equals("") && like != null) {
             form.addLikes(like);
         }
-
-        benutzer.setPasswort(form.getPassword());
-        
+        if (form.getPassword() != null) {
+            benutzer.setPasswort(form.getPassword());
+        }
         if ( benutzer.getPasswort() == null || benutzer.getPasswort().isEmpty()) {
             result.rejectValue("password", "benutzer.password.ungesetzt", "Passwort wurde noch nicht gesetzt");
         }
@@ -105,9 +106,7 @@ public class BenutzerController {
             // Er soll auf Seite mit Fehlermeldung geleitet.
             return "benutzer/benutzerbearbeiten";
         }
-        
         form.toBenutzer(benutzer);
-        
         try {
             benutzer = benutzerService.speichereBenutzer(benutzer);
             model.addAttribute("info", null);
@@ -118,7 +117,7 @@ public class BenutzerController {
             model.addAttribute("info", info);
             logger.error("Fehler beim Speichern des Benutzers: ", e);
         }    
-
+        model.addAttribute("form", form);
         return "benutzer/benutzerbearbeiten";
     }
     
@@ -136,7 +135,6 @@ public class BenutzerController {
 
         return "benutzer/benutzerliste-zeile :: feldbearbeiten";
     }
-
 
     @PutMapping("/benutzer/{id}/hx/feld/{feldname}")
     public String putFeldBearbeiten(@PathVariable("id") Long userID, @PathVariable("feldname") String feldname, @RequestParam("wert") String wert, @RequestBody String entity) {

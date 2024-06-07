@@ -55,7 +55,8 @@ public class Benutzer {
     @ElementCollection
     private Set<String> dislikes = new HashSet<String>();
 
-    @OneToMany(mappedBy = "anbieter", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    // @OneToMany(mappedBy = "anbieter", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "anbieter")
     private List<Tour> angeboteneTouren;
 
     public long getId() {

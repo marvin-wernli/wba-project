@@ -28,7 +28,7 @@ public class BenutzerFormular{
 
     @Past()
     @DateTimeFormat(iso=ISO.DATE)
-    private LocalDate birthdate;
+    private LocalDate geburtstag;
 
     private Set<String> likes;
     private Set<String> dislikes;
@@ -53,7 +53,7 @@ public class BenutzerFormular{
      */
     public void toBenutzer(Benutzer b) {
         b.setName(this.name);
-        b.setGeburtstag(this.birthdate);
+        b.setGeburtstag(this.geburtstag);
         b.setMail(this.mail);
         b.setLikes(this.likes);
         b.setDislikes(this.dislikes);
@@ -66,7 +66,7 @@ public class BenutzerFormular{
      */
     public void fromBenutzer(Benutzer b) {
         this.setName(b.getName());
-        this.setBirthdate(b.getGeburtstag());
+        this.setGeburtstag(b.getGeburtstag());
         this.setMail(b.getMail());
         this.likes = new HashSet<String>(b.getLikes());
         this.dislikes = new HashSet<String>(b.getDislikes());
@@ -111,12 +111,12 @@ public class BenutzerFormular{
         this.password = password;
     }
 
-    public LocalDate getBirthdate() {
-        return birthdate;
+    public LocalDate getGeburtstag() {
+        return geburtstag;
     }
 
-    public void setBirthdate(LocalDate birthdate) {
-        this.birthdate = birthdate;
+    public void setGeburtstag(LocalDate geburtstag) {
+        this.geburtstag = geburtstag;
     }
     
 }

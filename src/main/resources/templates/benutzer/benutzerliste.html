@@ -19,7 +19,7 @@
                 <p th:text="${user.id}"></p>
 
                 <td th:replace="~{benutzer/benutzerliste-zeile :: feldausgeben((benutzerid=${user.id},feldname=name,wert=${user.name}))}"></td>
-
+                
                 <td th:replace="~{benutzer/benutzerliste-zeile :: feldausgeben(benutzerid=${user.id},feldname=mail,wert=${user.mail})}"> </td>
 
                 <form th:action="@{'/benutzer/' + ${user.id}}" method="get">
