@@ -135,26 +135,35 @@ public class BenutzerController {
         } else if (feldname.equals("name")) {
             wert = benutzer.getName();
         }
-        model.addAttribute("wert",wert);
+
+        model.addAttribute("id", userID);
+        model.addAttribute("feldname", feldname);
+        model.addAttribute("wert", wert);
 
         return "benutzer/benutzerliste-zeile :: feldbearbeiten";
     }
 
     @PutMapping("/benutzer/{id}/hx/feld/{feldname}")
-    public String putFeldBearbeiten(@PathVariable("id") Long userID, @PathVariable("feldname") String feldname, @RequestParam("wert") String wert, @RequestBody String entity) {
-        benutzerService.aktualisiereBenutzerAttribut(userID,feldname,wert);
+    public String putFeldBearbeiten(@PathVariable("id") Long userID, @PathVariable("feldname") String feldname, @RequestParam("wert") String wert, Model model) {
         try {
             benutzerService.aktualisiereBenutzerAttribut(userID,feldname,wert);
-            return "benutzer/benutzerliste-zeile :: feldausgeben";
         } catch (Exception e) {
             logger.error("Fehler beim aktualisieren des Benutzers: ", e);
-        }    
+            model.addAttribute("error", e.getMessage());
+            return "benutzer/benutzerliste-zeile :: feldbearbeiten";
+        } 
+        
         Benutzer benutzer = benutzerService.holeBenutzerMitId(userID).get();
         if (feldname.equals("email")) {
             wert = benutzer.getMail();
         } else if (feldname.equals("name")) {
             wert = benutzer.getName();
         }
-        return "benutzer/benutzerliste-zeile :: feldbearbeiten";
+
+        model.addAttribute("id", userID);
+        model.addAttribute("feldname", feldname);
+        model.addAttribute("wert", wert);
+
+        return "benutzer/benutzerliste-zeile :: feldausgeben";
     }
 }

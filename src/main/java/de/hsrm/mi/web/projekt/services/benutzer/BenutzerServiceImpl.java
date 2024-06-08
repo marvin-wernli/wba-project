@@ -50,11 +50,11 @@ public class BenutzerServiceImpl implements BenutzerService {
         
         if (feldname.equals("name")) {
             newBenutzer.setName(wert);
-            return newBenutzer;
         } else if (feldname.equals("email")) {
             newBenutzer.setMail(wert);
-            return newBenutzer;
         }
+        benutzerRepository.save(newBenutzer);
+        return newBenutzer;
     }
     return null;
     }
