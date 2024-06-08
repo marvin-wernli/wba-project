@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,7 +51,7 @@ public class BenutzerController {
             form = new BenutzerFormular();
             benutzer = new Benutzer();
             logger.info("{}",benutzer);
-        } else if (userID > 0) {
+        } else {
             benutzer = benutzerService.holeBenutzerMitId(userID).get();
             form.fromBenutzer(benutzer);
             logger.info("{}",form.getName());
@@ -77,7 +78,7 @@ public class BenutzerController {
     
     
     @PostMapping("/benutzer/{n}")
-    public String submitForm(   
+    public String submitForm(   @PathVariable("n") Long userID,
                                 @Valid @ModelAttribute("form") BenutzerFormular form,
                                 BindingResult result,
                                 @ModelAttribute("benutzer") Benutzer benutzer,
@@ -86,6 +87,17 @@ public class BenutzerController {
                                 @RequestParam("like") String like,
                                 @RequestParam("dislike") String dislike,
                                 Model model   ) {
+
+        if (userID == 0) {
+            benutzer = new Benutzer();
+        } else {
+            Optional<Benutzer> newBenutzer = benutzerService.holeBenutzerMitId(userID);
+            if (newBenutzer.isPresent()) {
+                benutzer = newBenutzer.get();
+            } else {
+                return "redirect:";
+            }
+        }
         
         form.addDislikes(dislike);
         form.addLikes(like);
@@ -113,7 +125,7 @@ public class BenutzerController {
         return "benutzer/benutzerbearbeiten";
     }
     
- 
+
     @GetMapping("/benutzer/{id}/hx/feld/{feldname}")
     public String getFeldAusgeben(@PathVariable("id") Long userID, @PathVariable("feldname") String feldname, @ModelAttribute("wert") String wert, Model model) {
         Benutzer benutzer = benutzerService.holeBenutzerMitId(userID).get();
