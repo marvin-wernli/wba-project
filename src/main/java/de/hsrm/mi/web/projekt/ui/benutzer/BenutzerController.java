@@ -127,8 +127,9 @@ public class BenutzerController {
     
 
     @GetMapping("/benutzer/{id}/hx/feld/{feldname}")
-    public String getFeldAusgeben(@PathVariable("id") Long userID, @PathVariable("feldname") String feldname, @ModelAttribute("wert") String wert, Model model) {
-        Benutzer benutzer = benutzerService.holeBenutzerMitId(userID).get();
+    public String getFeldAusgeben(@PathVariable("id") Long benutzerid, @PathVariable("feldname") String feldname, @ModelAttribute("wert") String wert, Model model) {
+        
+        Benutzer benutzer = benutzerService.holeBenutzerMitId(benutzerid).get();
 
         if (feldname.equals("email")) {
             wert = benutzer.getMail();
@@ -136,31 +137,33 @@ public class BenutzerController {
             wert = benutzer.getName();
         }
 
-        model.addAttribute("id", userID);
+        model.addAttribute("benutzerid", benutzerid);
         model.addAttribute("feldname", feldname);
         model.addAttribute("wert", wert);
 
         return "benutzer/benutzerliste-zeile :: feldbearbeiten";
     }
 
-    @PutMapping("/benutzer/{id}/hx/feld/{feldname}")
-    public String putFeldBearbeiten(@PathVariable("id") Long userID, @PathVariable("feldname") String feldname, @RequestParam("wert") String wert, Model model) {
+    @PutMapping("/benutzer/{id}/hx/put/feld/{feldname}")
+    public String putFeldBearbeiten(@PathVariable("id") Long benutzerid, @PathVariable("feldname") String feldname, @RequestParam("wert") String wert, Model model) {
+
+        
         try {
-            benutzerService.aktualisiereBenutzerAttribut(userID,feldname,wert);
+            benutzerService.aktualisiereBenutzerAttribut(benutzerid,feldname,wert);
         } catch (Exception e) {
             logger.error("Fehler beim aktualisieren des Benutzers: ", e);
             model.addAttribute("error", e.getMessage());
             return "benutzer/benutzerliste-zeile :: feldbearbeiten";
         } 
         
-        Benutzer benutzer = benutzerService.holeBenutzerMitId(userID).get();
+        Benutzer benutzer = benutzerService.holeBenutzerMitId(benutzerid).get();
         if (feldname.equals("email")) {
             wert = benutzer.getMail();
         } else if (feldname.equals("name")) {
             wert = benutzer.getName();
         }
 
-        model.addAttribute("id", userID);
+        model.addAttribute("benutzerid", benutzerid);
         model.addAttribute("feldname", feldname);
         model.addAttribute("wert", wert);
 
