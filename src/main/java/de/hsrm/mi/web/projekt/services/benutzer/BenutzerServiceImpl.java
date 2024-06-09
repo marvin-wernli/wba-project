@@ -44,13 +44,12 @@ public class BenutzerServiceImpl implements BenutzerService {
     @Override @Transactional
     public Benutzer aktualisiereBenutzerAttribut(long id, String feldname, String wert){
     Optional<Benutzer> benutzer = benutzerRepository.findById(id);
-
     if (benutzer.isPresent()) {
         Benutzer newBenutzer = benutzer.get();
-        
+
         if (feldname.equals("name")) {
             newBenutzer.setName(wert);
-        } else if (feldname.equals("email")) {
+        } else if (feldname.equals("mail")) {
             newBenutzer.setMail(wert);
         }
         benutzerRepository.save(newBenutzer);
