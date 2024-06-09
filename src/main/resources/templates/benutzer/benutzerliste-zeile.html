@@ -3,7 +3,8 @@
         <td th:fragment="feldausgeben(benutzerid, feldname, wert)">
             <span th:hx-get="@{/benutzer/{id}/hx/feld/{feldname}(id=${benutzerid},feldname=${feldname})}" 
             hx-trigger="click" 
-            th:text="${wert}"></span>
+            th:text="${wert}"
+            th:hx-swap="outerHTML"></span>
         </td>
         <td th:fragment="feldbearbeiten(benutzerid, feldname, wert)">
             <form th:hx-put="@{/benutzer/{id}/hx/feld/{feldname}(id=${benutzerid},feldname=${feldname})}" 

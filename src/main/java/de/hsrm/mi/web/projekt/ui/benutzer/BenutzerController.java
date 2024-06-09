@@ -152,12 +152,11 @@ public class BenutzerController {
         } catch (Exception e) {
             logger.error("Fehler beim aktualisieren des Benutzers: ", e);
             model.addAttribute("error", e.getMessage());
-            System.out.println("Er ist hier!!!");
             return "benutzer/benutzerliste-zeile :: feldbearbeiten";
         } 
         
         Benutzer benutzer = benutzerService.holeBenutzerMitId(benutzerid).get();
-        if (feldname.equals("email")) {
+        if (feldname.equals("mail")) {
             wert = benutzer.getMail();
         } else if (feldname.equals("name")) {
             wert = benutzer.getName();
@@ -166,8 +165,6 @@ public class BenutzerController {
         model.addAttribute("benutzerid", benutzerid);
         model.addAttribute("feldname", feldname);
         model.addAttribute("wert", wert);
-
-        System.out.println("Er ist hier!!!" + benutzerid + feldname + wert);
 
         return "benutzer/benutzerliste-zeile :: feldausgeben";
     }
