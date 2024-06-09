@@ -144,15 +144,15 @@ public class BenutzerController {
         return "benutzer/benutzerliste-zeile :: feldbearbeiten";
     }
 
-    @PutMapping("/benutzer/{id}/hx/put/feld/{feldname}")
+    @PutMapping("/benutzer/{id}/hx/feld/{feldname}")
     public String putFeldBearbeiten(@PathVariable("id") Long benutzerid, @PathVariable("feldname") String feldname, @RequestParam("wert") String wert, Model model) {
 
-        
         try {
             benutzerService.aktualisiereBenutzerAttribut(benutzerid,feldname,wert);
         } catch (Exception e) {
             logger.error("Fehler beim aktualisieren des Benutzers: ", e);
             model.addAttribute("error", e.getMessage());
+            System.out.println("Er ist hier!!!");
             return "benutzer/benutzerliste-zeile :: feldbearbeiten";
         } 
         
@@ -166,6 +166,8 @@ public class BenutzerController {
         model.addAttribute("benutzerid", benutzerid);
         model.addAttribute("feldname", feldname);
         model.addAttribute("wert", wert);
+
+        System.out.println("Er ist hier!!!" + benutzerid + feldname + wert);
 
         return "benutzer/benutzerliste-zeile :: feldausgeben";
     }
