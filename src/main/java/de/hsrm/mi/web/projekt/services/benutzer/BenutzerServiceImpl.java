@@ -48,9 +48,17 @@ public class BenutzerServiceImpl implements BenutzerService {
         Benutzer newBenutzer = benutzer.get();
 
         if (feldname.equals("name")) {
-            newBenutzer.setName(wert);
+            if (wert == null || wert.length() > 3 && wert.length() < 80) {
+                newBenutzer.setName(wert);
+            } else {
+                newBenutzer.setName(newBenutzer.getName());
+            }
         } else if (feldname.equals("mail")) {
-            newBenutzer.setMail(wert);
+            if (wert != null && wert.matches("^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")) {
+                newBenutzer.setMail(wert);
+            } else {
+                newBenutzer.setMail(newBenutzer.getMail());
+            }
         }
         benutzerRepository.save(newBenutzer);
         return newBenutzer;
