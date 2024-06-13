@@ -24,8 +24,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 
-
-
 @Controller
 @SessionAttributes(names = {"form","userID","maxwunsch","benutzer, wert"})
 public class BenutzerController {
@@ -146,6 +144,8 @@ public class BenutzerController {
 
     @PutMapping("/benutzer/{id}/hx/feld/{feldname}")
     public String putFeldBearbeiten(@PathVariable("id") Long benutzerid, @PathVariable("feldname") String feldname, @RequestParam("wert") String wert, Model model) {
+        
+        Benutzer benutzer = benutzerService.holeBenutzerMitId(benutzerid).get();
 
         try {
             benutzerService.aktualisiereBenutzerAttribut(benutzerid,feldname,wert);
@@ -154,8 +154,7 @@ public class BenutzerController {
             model.addAttribute("error", e.getMessage());
             return "benutzer/benutzerliste-zeile :: feldbearbeiten";
         } 
-        
-        Benutzer benutzer = benutzerService.holeBenutzerMitId(benutzerid).get();
+    
         if (feldname.equals("mail")) {
             wert = benutzer.getMail();
         } else if (feldname.equals("name")) {
