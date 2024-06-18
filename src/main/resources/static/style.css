@@ -82,9 +82,6 @@ footer {
   font-size: 14pt;
   text-align: right;
 }
-header a:hover{
-  color: white;
-}
 
 .err {
   color: red;

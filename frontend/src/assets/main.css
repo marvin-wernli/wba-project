@@ -1,35 +1,52 @@
-@import './base.css';
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+body, html {
+  height: 100%;
+  width: auto;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-a,
-.green {
+.header{
+  padding: 20px;
+  background: lightskyblue;
+  font-size: 32px;
+  text-align: right;
+}
+.header a {
+  font-size: 14pt;
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+  color: black;
+}
+.header a:hover{
+  color: white;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+a {
+  margin: 5px;
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
+.hUsr {
+  float: left;
+  font-size: 32px;
+  font-weight: bold;
+}
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+.errorText {
+  display: table;
+  margin: 0 auto;
+  color: red;
+  background-color: orange;
+  border: 2px solid lightgray;
+  border-radius: 10px;
+  padding: 20px
+}
+
+.impressum {
+  float: left;
+}
+footer {
+  padding: 20px;
+  background: lightskyblue;
+  font-size: 14pt;
+  text-align: right;
 }
