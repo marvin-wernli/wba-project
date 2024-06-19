@@ -34,8 +34,8 @@ a {
 .errorText {
   display: table;
   margin: 0 auto;
-  color: red;
-  background-color: orange;
+  color: rgb(220, 97, 128);
+  background-color: rgb(241, 182, 197);
   border: 2px solid lightgray;
   border-radius: 10px;
   padding: 20px
