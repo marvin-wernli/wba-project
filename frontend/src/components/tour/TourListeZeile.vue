@@ -3,28 +3,34 @@
 <template>
     <tr class="userLst">
         <td>
-            <p>{{abfahrDateTime}}</p>
+            <p>{{tour.abfahrDateTime}}</p>
         </td>
         <td>
-            <p>{{startOrtName}}</p>
+            <p>{{tour.startOrtName}}</p>
         </td>
         <td>
-            <p>{{zielOrtName}}</p>
+            <p>{{tour.zielOrtName}}</p>
         </td>
         <td>
-            <p>{{distanz}}</p>
+            <p>{{tour.distanz.toFixed(1)}}km</p>
         </td>
         <td>
-            <p>{{plaetze}}</p>
+            <p>{{tour.plaetze}}</p>
         </td>
         <td>
-            <p>frei</p>
+            <p>{{tour.plaetze-tour.buchungen}}</p>
         </td>
         <td>
-            <p>{{preis}}</p>
+            <p>{{tour.preis}}€</p>
         </td>
         <td>
             <button>Details</button>
         </td>
     </tr>
-<!template>
+</template>
+
+<script setup lang="ts">
+    import { defineProps } from 'vue'
+    import type { ITourDTD } from '@/views/TourenListeView.vue';
+    const props = defineProps<{ tour: ITourDTD }>()
+</script>

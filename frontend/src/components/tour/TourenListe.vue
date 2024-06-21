@@ -4,7 +4,6 @@
 
 <template>
     <div class="border">
-        <h1>Das aktuelle Mitfahrangebot...</h1>
         <table>
             <tr class="userLst">
                 <td>
@@ -32,22 +31,18 @@
                     <button>Details</button>
                 </td>
             </tr>
-            <TourListZeile v-bind="tourliste" />
+            <tbody>
+            <TourListeZeile v-for="tour in touren" :key="tour.id" :tour="tour"/>
+            </tbody>
         </table>
     </div>
 </template>
 
 <script setup lang="ts">
 
-const touren = defineProps<{
-    abfahrDateTime: string
-    preis: number
-    plaetze: number
-    startOrtName: string
-    zielOrtName: string
-    anbieterName: string
-    distanz: number
-    info: string
-}
+    import TourListeZeile from '@/components/tour/TourListeZeile.vue'
+    import type { ITourDTD } from '@/views/TourenListeView.vue';
+    import { defineProps } from 'vue'
+    const props = defineProps<{ touren: ITourDTD[] }>()
 
 </script>

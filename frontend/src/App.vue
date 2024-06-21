@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { computed, ref, reactive} from "vue"
+  import TourenListeView from '@/views/TourenListeView.vue'
 
   const info = ref("Dies ist eine Nachricht")
 
@@ -26,6 +27,7 @@
             <span  >{{info}}</span>
             <button v-on:click="error" >x</button>
         </div>
+        <TourenListeView/>
         <button v-on:click="hallo"> Fehlernachricht erzeugen </button>
         </header>
         <footer >
