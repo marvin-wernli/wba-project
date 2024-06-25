@@ -1,15 +1,10 @@
 <script setup lang="ts">
   import { computed, ref, reactive} from "vue"
   import TourenListeView from '@/views/TourenListeView.vue'
+  import { useInfo } from '@/composables/useInfo'
 
-  const info = ref("Dies ist eine Nachricht")
+  const { info, loescheInfo} = useInfo()
 
-  function error(){
-    info.value = ""
-  }
-  function hallo(){
-    info.value = "Dies ist eine Nachricht"
-  }
 </script>
 
 <template> 
@@ -25,10 +20,10 @@
         </div>
         <div v-if="info != ''" class="errorText">
             <span  >{{info}}</span>
-            <button v-on:click="error" >x</button>
+            <button v-on:click="loescheInfo" >x</button>
         </div>
         <TourenListeView/>
-        <button v-on:click="hallo"> Fehlernachricht erzeugen </button>
+        <!--<button v-on:click="useInfo().Info"> Fehlernachricht erzeugen </button>-->
         </header>
         <footer >
             <a class="impressum" >Impressum</a>
