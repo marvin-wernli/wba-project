@@ -31,6 +31,6 @@
 
 <script setup lang="ts">
     import { defineProps } from 'vue'
-    import type { ITourDTD } from '@/views/TourenListeView.vue';
+    import type { ITourDTD } from '@/stores/ITourDTD';
     const props = defineProps<{ tour: ITourDTD }>()
 </script>

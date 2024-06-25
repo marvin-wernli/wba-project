@@ -1,7 +1,7 @@
 // Folie 214
 import { ref,readonly,reactive} from 'vue'
 
-const info = ref<string>('');
+const info = ref<string>('Oh nein! Spinne auf dem Bildschirm!');
 
 export function useInfo() {
 

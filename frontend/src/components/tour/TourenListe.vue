@@ -41,7 +41,7 @@
 <script setup lang="ts">
 
     import TourListeZeile from '@/components/tour/TourListeZeile.vue'
-    import type { ITourDTD } from '@/views/TourenListeView.vue';
+    import type { ITourDTD } from '@/stores/ITourDTD';
     import { defineProps } from 'vue'
     const props = defineProps<{ touren: ITourDTD[] }>()
 

@@ -19,6 +19,7 @@
             <a >EN</a>
         </div>
         <div v-if="info != ''" class="errorText">
+        <div v-if="info != ''" class="errorText"></div>
             <span  >{{info}}</span>
             <button v-on:click="loescheInfo" >x</button>
         </div>
