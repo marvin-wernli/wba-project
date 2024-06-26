@@ -2,8 +2,12 @@
   import { computed, ref, reactive} from "vue"
   import TourenListeView from '@/views/TourenListeView.vue'
   import { useInfo } from '@/composables/useInfo'
+  import { RouterView } from 'vue-router'
 
   const { info, loescheInfo} = useInfo()
+
+
+
 
 </script>
 
@@ -23,8 +27,7 @@
             <span  >{{info}}</span>
             <button v-on:click="loescheInfo" >x</button>
         </div>
-        <TourenListeView/>
-        <!--<button v-on:click="useInfo().Info"> Fehlernachricht erzeugen </button>-->
+        <RouterView/>
         </header>
         <footer >
             <a class="impressum" >Impressum</a>
