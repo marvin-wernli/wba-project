@@ -15,7 +15,6 @@ import de.hsrm.mi.web.projekt.entities.benutzer.BenutzerRepository;
 public class BenutzerServiceImpl implements BenutzerService {
 
     private final BenutzerRepository benutzerRepository;
-    // TODO: Logging
 
     @Autowired
     public BenutzerServiceImpl(BenutzerRepository bR) {

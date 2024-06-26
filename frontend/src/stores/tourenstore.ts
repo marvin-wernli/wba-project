@@ -2,9 +2,8 @@ import { reactive, readonly, computed } from "vue";
 import { defineStore } from "pinia";
 import type { ITourDTD } from "./ITourDTD";
 
-// TODO: der bekannten tourliste (?) muss auch importiert werden oder was?
 export const useTourenStore = defineStore("tourenstore", () => {
-    const tourdata = reactive({ok:Boolean,tourliste:Array<ITourDTD>});
+    const tourdata = reactive({ok:Boolean,tourliste:Array<ITourDTD>()});
 
     function updateTourListe() {
         tourdata.tourliste = JSON.parse(`
@@ -16,6 +15,8 @@ export const useTourenStore = defineStore("tourenstore", () => {
             ]
             `)
     }
+
+    updateTourListe()
 
     return {
         tourdata,

@@ -32,7 +32,6 @@ public class Tour {
     @Size(max=400)
     private String info;
 
-    // TODO: Bin mir bei der Beziehung noch unsicher
     @NotNull
     @ManyToOne
     private Ort startOrt;
