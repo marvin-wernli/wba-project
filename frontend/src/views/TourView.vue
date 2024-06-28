@@ -1,19 +1,22 @@
 <template>
     <h1>Tour {{tourid}}</h1>
-    <p>Und die restlichen Sachen</p>
+    <div v-if="tour">
+        <p>{{tour.info}}</p>
+        <p>Abfahrt am {{tour.abfahrDateTime }}</p>
+    </div>
 </template>
 
 
 <script setup lang="ts">
 // TODO: Komplette Anzeige
-import { defineProps } from 'vue';
+import { computed, defineProps } from 'vue';
 import { useTourenStore } from '@/stores/tourenstore';
 
 // TODO: tourid die mitgegeben werden kann. kein plan da.
-const props = defineProps<{ tourid : string }>()
+const props = defineProps <{tourid: string}>();
+var touridInt = Number(props.tourid.valueOf);
 const {tourdata} = useTourenStore();
-const {id,abfahrDateTime,preis,plaetze,buchungen,startOrtName,zielOrtName,anbieterName,distanz} = tourdata;
-
+const tour = computed(() => tourdata.tourliste.find(tour => tour.id === touridInt ));
 
 
 
