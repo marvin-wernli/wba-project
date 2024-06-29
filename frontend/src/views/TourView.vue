@@ -9,14 +9,17 @@
 
 
 <script setup lang="ts">
-import { computed, defineProps, toRef, toRefs } from 'vue';
+import { computed, defineProps, toRefs, watch } from 'vue';
 import { useTourenStore } from '@/stores/tourenstore';
+import { useInfo } from '@/composables/useInfo';
 
 const props = defineProps <{tourid: string}>();
 const { tourid } = toRefs(props);
 const touridInt = parseInt(tourid.value);
 
-const {tourdata} = useTourenStore();
+const { tourdata } = useTourenStore();
+const { setzeInfo } = useInfo();
+
 const tour = computed(() => tourdata.tourliste.find(tour => tour.id === touridInt ));
 
 const infoText = computed(() => {
@@ -30,5 +33,9 @@ const infoText = computed(() => {
             gebucht <b>(${tour.value.plaetze - tour.value.buchungen} freie Plätze)</b>  <br>`
     ;
 });
+
+if (tour.value && tour.value.distanz > 300){
+        setzeInfo(`Die Tour von ${tour.value.startOrtName} nach ${tour.value.zielOrtName} ist weiter als 300 km, bitte Kekse einpacken.`);
+};
 
 </script>
