@@ -24,13 +24,16 @@
             <p>{{tour.preis}}€</p>
         </td>
         <td>
-            <button>Details</button>
+            <RouterLink :to="`/tour/${tour.id}`">Details</RouterLink>
         </td>
     </tr>
 </template>
 
 <script setup lang="ts">
-    import { defineProps } from 'vue'
-    import type { ITourDTD } from '@/stores/ITourDTD';
-    const props = defineProps<{ tour: ITourDTD }>()
+import { defineProps } from 'vue'
+import type { ITourDTD } from '@/stores/ITourDTD';
+import { RouterLink } from 'vue-router';
+
+const props = defineProps<{tour: ITourDTD}>()
+
 </script>

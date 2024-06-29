@@ -1,11 +1,8 @@
 <script setup lang="ts">
-  import { computed, ref, reactive} from "vue"
-  import TourenListeView from '@/views/TourenListeView.vue'
   import { useInfo } from '@/composables/useInfo'
-  import { RouterView } from 'vue-router'
-  import TourView from '@/views/TourView.vue'
+  import { RouterLink, RouterView } from 'vue-router'
 
-  const { info, loescheInfo} = useInfo()
+  const { info, loescheInfo} = useInfo();
 
 </script>
 
@@ -15,7 +12,7 @@
             <div class="header">
             <a  class="hUsr" >Benutzer</a>
             <a  class="hUsr" >Ort</a>
-            <a  class="hUsr" >Touren</a>
+            <RouterLink to="/touren" class="hUsr">Touren</RouterLink>
             <a >DE</a>
             <a >NL</a>
             <a >EN</a>
@@ -27,8 +24,6 @@
         </div>
         </header>
         <RouterView/>
-        <TourView tourid="1"></TourView>
-        <p>Hier sollte ihre Werbung stehen.</p>
         <footer >
             <a class="impressum" >Impressum</a>
             <a >Kontakt</a>
