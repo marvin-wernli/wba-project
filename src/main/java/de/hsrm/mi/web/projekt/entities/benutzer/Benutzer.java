@@ -14,6 +14,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Version;
 import jakarta.validation.constraints.Email;
@@ -59,6 +60,17 @@ public class Benutzer {
     // @OneToMany(mappedBy = "anbieter", cascade = CascadeType.REMOVE, orphanRemoval = true)
     @OneToMany(mappedBy = "anbieter")
     private List<Tour> angeboteneTouren;
+
+    @ManyToMany
+    private Set<Tour> gebuchteTouren;
+
+    public Set<Tour> getGebuchteTouren() {
+        return gebuchteTouren;
+    }
+
+    public void setGebuchteTouren(Set<Tour> gebuchteTouren) {
+        this.gebuchteTouren = gebuchteTouren;
+    }
 
     public long getId() {
         return id;

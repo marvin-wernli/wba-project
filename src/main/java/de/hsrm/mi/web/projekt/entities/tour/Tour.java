@@ -1,6 +1,7 @@
 package de.hsrm.mi.web.projekt.entities.tour;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.entities.ort.Ort;
@@ -43,6 +44,17 @@ public class Tour {
     @NotNull
     @ManyToOne
     private Benutzer anbieter;
+
+    @ManyToMany
+    private Set<Tour> mitfahrgaeste;
+
+    public Set<Tour> getMitfahrgaeste() {
+        return mitfahrgaeste;
+    }
+
+    public void setMitfahrgaeste(Set<Tour> mitfahrgaeste) {
+        this.mitfahrgaeste = mitfahrgaeste;
+    }
 
     public long getId() {
         return id;
