@@ -36,14 +36,11 @@ public class TourApiController {
         return tourDTDs;
     }
 
-    /** @GetMapping(value="/api/ort/{id}",
+    @GetMapping(value="/api/tour/{id}",
                 produces=MediaType.APPLICATION_JSON_VALUE)
-    public OrtDTO getJsonFromId(@PathVariable("id") Long id){
-        Ort ort = ortService.holeOrtMitId(id)
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Ort not found"));
-        
-        return OrtDTO.fromOrt(ort);
+    public TourDTD getJsonFromId(@PathVariable("id") Long id){
+        Tour tour = tourService.holeTourMitId(id)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "TTour not found"));
+        return TourDTD.fromTour(tour);
     }
-        */
-    
 }

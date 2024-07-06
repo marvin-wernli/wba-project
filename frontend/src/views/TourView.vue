@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import { computed, defineProps, toRefs, watch } from 'vue';
-import { useTourenStore } from '@/stores/tourenstore';
+import { useTourenStore} from '@/stores/tourenstore';
 import { useInfo } from '@/composables/useInfo';
 
 const props = defineProps <{tourid: string}>();
@@ -21,6 +21,11 @@ const { tourdata } = useTourenStore();
 const { setzeInfo } = useInfo();
 
 const tour = computed(() => tourdata.tourliste.find(tour => tour.id === touridInt ));
+
+
+if (!tourdata.ok){
+    useTourenStore().updateTourListe();
+} 
 
 const infoText = computed(() => {
     if (!tour.value) return '';
