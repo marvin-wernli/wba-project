@@ -55,6 +55,11 @@ public class TourController {
         return "tour/tourliste";
     }
 
+    @GetMapping("")
+    public String showTourListeFromNothing(Model model) {
+        return "redirect:/admin/tour";
+    }
+
     @GetMapping("/tour/{id}")
     public String showTourBearbeiten(@PathVariable("id") Long tourID, @ModelAttribute("tourForm") TourFormular tourForm, @ModelAttribute("tour") Tour tour, Model model) {
         
