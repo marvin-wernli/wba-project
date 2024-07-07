@@ -3,7 +3,6 @@ package de.hsrm.mi.web.projekt.services.tour;
 import java.util.List;
 import java.util.Optional;
 
-import org.hibernate.internal.util.collections.ConcurrentReferenceHashMap.Option;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -14,6 +13,10 @@ import de.hsrm.mi.web.projekt.entities.ort.Ort;
 import de.hsrm.mi.web.projekt.entities.ort.OrtRepository;
 import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import de.hsrm.mi.web.projekt.entities.tour.TourRepository;
+import de.hsrm.mi.web.projekt.messaging.FrontendNachrichtEvent;
+import de.hsrm.mi.web.projekt.messaging.FrontendNachrichtEvent.EventTyp;
+import de.hsrm.mi.web.projekt.messaging.FrontendNachrichtEvent.Operation;
+import de.hsrm.mi.web.projekt.messaging.FrontendNachrichtService;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -30,6 +33,9 @@ public class TourServiceImpl implements TourService {
         this.ortRepository = oR;
     }
 
+    @Autowired
+    public FrontendNachrichtService frontendNachrichtService;
+
     @Override @Transactional
     public List<Tour> holeAlleTouren() {
         return tourRepository.findAll(Sort.by(Sort.Direction.ASC, "abfahrDateTime"));
@@ -42,12 +48,17 @@ public class TourServiceImpl implements TourService {
 
     @Override @Transactional
     public Tour speichereTouren(Tour b) {
-        return tourRepository.save(b);
+        Tour savedTour = tourRepository.save(b);
+        FrontendNachrichtEvent event = new FrontendNachrichtEvent(EventTyp.TOUR, savedTour.getId(), Operation.CREATE);
+        frontendNachrichtService.sendEvent(event);
+        return savedTour;
     }
 
     @Override @Transactional
     public void loescheTourMitId(long id) {
         tourRepository.deleteById(id);
+        FrontendNachrichtEvent event = new FrontendNachrichtEvent(EventTyp.TOUR, id, Operation.DELETE);
+        frontendNachrichtService.sendEvent(event);
     }
 
     @Transactional
@@ -61,7 +72,10 @@ public class TourServiceImpl implements TourService {
             tour.setStartOrt(startOrt.get());
             tour.setZielOrt(zielOrt.get());
 
-            return tourRepository.save(tour);
+            Tour savedTour = tourRepository.save(tour);
+            FrontendNachrichtEvent event = new FrontendNachrichtEvent(EventTyp.TOUR, savedTour.getId(), Operation.CREATE);
+            frontendNachrichtService.sendEvent(event);
+            return savedTour;
         } else {
             return null;
         }
