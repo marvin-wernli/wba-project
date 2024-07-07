@@ -21,15 +21,15 @@
                 <td th:replace="~{benutzer/benutzerliste-zeile :: feldausgeben(benutzerid=${user.id},feldname=name,wert=${user.name})}"></td>
                 <td th:replace="~{benutzer/benutzerliste-zeile :: feldausgeben(benutzerid=${user.id},feldname=mail,wert=${user.mail})}"> </td>
 
-                <form th:action="@{'/benutzer/' + ${user.id}}" method="get">
+                <form th:action="@{'/admin/benutzer/' + ${user.id}}" method="get">
                     <input class="submit" type="submit" th:value="#{benutzerliste.eintrag.bearbeiten}">
                 </form>
-                <form th:action="@{'/benutzer/' + ${user.id} + '/del'}" method="get">
+                <form th:action="@{'/admin/benutzer/' + ${user.id} + '/del'}" method="get">
                     <input class="submit" type="submit" th:value="#{benutzerliste.eintrag.loeschen}">
                 </form>
             </li>
         </ul>
-        <form th:action="@{'/benutzer/0'}">
+        <form th:action="@{'/admin/benutzer/0'}">
             <input class="submit" type="submit" th:value="#{benutzerliste.neu}">
         </form>
     </div>

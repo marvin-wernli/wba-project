@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
@@ -28,6 +29,7 @@ import jakarta.validation.Valid;
 
 @Controller
 @SessionAttributes(names = {"tourForm", "id", "tour"})
+@RequestMapping("/admin")
 public class TourController {
     
     Logger logger = LoggerFactory.getLogger(TourController.class);
@@ -76,7 +78,7 @@ public class TourController {
     @GetMapping("/tour/{n}/del")
     public String deleteTour(@PathVariable("n") Long tourID) {
         tourService.loescheTourMitId(tourID);
-        return "redirect:/tour";
+        return "redirect:/admin/tour";
     }
 
     @PostMapping("/tour/{id}")

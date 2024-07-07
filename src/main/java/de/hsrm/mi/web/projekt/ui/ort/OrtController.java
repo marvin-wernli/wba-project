@@ -19,9 +19,11 @@ import de.hsrm.mi.web.projekt.services.ort.OrtService;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @SessionAttributes(names = {"ortForm","id","ort"})
+@RequestMapping("/admin")
 public class OrtController {
 
     Logger logger = LoggerFactory.getLogger(OrtController.class);
@@ -67,7 +69,7 @@ public class OrtController {
     @GetMapping("/ort/{n}/del")
     public String deleteOrt(@PathVariable("n") Long ortsID) {
         ortService.loescheOrtMitId(ortsID);
-        return "redirect:/ort";
+        return "redirect:/admin/ort";
     }
     
     

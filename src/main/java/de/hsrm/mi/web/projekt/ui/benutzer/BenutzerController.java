@@ -22,10 +22,12 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
 @Controller
 @SessionAttributes(names = {"form","userID","maxwunsch","benutzer, wert"})
+@RequestMapping("/admin")
 public class BenutzerController {
 
     private final int maxwunsch = 5;
@@ -71,7 +73,7 @@ public class BenutzerController {
     @GetMapping("/benutzer/{n}/del")
     public String deleteUser(@PathVariable("n") Long userID) {
         benutzerService.loescheBenutzerMitId(userID);
-        return "redirect:/benutzer";
+        return "redirect:/admin/benutzer";
     }
     
     

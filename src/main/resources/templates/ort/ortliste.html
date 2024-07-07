@@ -20,15 +20,15 @@
                 <p th:text="${ort.geobreite}"></p>
                 <p th:text="${ort.geolaenge}"></p>
                 <a th:href="|https://www.openstreetmap.org/#map=14/${ort.geobreite}/${ort.geolaenge}|" target="_blank">Karte</a>
-                <form th:action="@{'/ort/' + ${ort.id}}" method="get">
+                <form th:action="@{'/admin/ort/' + ${ort.id}}" method="get">
                     <input class="submit" type="submit" th:value="#{ortsliste.eintrag.bearbeiten}">
                 </form>
-                <form th:action="@{'/ort/' + ${ort.id} + '/del'}" method="get">
+                <form th:action="@{'/admin/ort/' + ${ort.id} + '/del'}" method="get">
                     <input class="submit" type="submit" th:value="#{ortsliste.eintrag.loeschen}">
                 </form>
             </li>
         </ul>
-        <form th:action="@{'/ort/0'}">
+        <form th:action="@{'/admin/ort/0'}">
             <input class="submit" type="submit" th:value="#{ortsliste.neu}">
         </form>
     </div>
