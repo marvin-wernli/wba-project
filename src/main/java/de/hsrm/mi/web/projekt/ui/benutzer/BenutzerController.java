@@ -1,6 +1,8 @@
 package de.hsrm.mi.web.projekt.ui.benutzer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,6 +35,7 @@ public class BenutzerController {
     private final int maxwunsch = 5;
     Logger logger = LoggerFactory.getLogger(BenutzerController.class);
     @Autowired private BenutzerService benutzerService;
+    @Autowired private PasswordEncoder encoder;
 
     @ModelAttribute("benutzer")
     public void initBenutzer(Model model) {
@@ -102,7 +105,7 @@ public class BenutzerController {
         form.addDislikes(dislike);
         form.addLikes(like);
         
-        benutzer.setPasswort(form.getPasswort());
+        benutzer.setPasswort(encoder.encode(form.getPasswort()));
         if ( benutzer.getPasswort() == null || benutzer.getPasswort().isEmpty()) {
             result.rejectValue("passwort", "benutzer.passwort.ungesetzt", "Passwort wurde noch nicht gesetzt");
         }

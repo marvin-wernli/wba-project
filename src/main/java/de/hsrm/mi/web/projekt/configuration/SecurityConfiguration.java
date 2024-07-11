@@ -43,9 +43,9 @@ public class SecurityConfiguration {
     @Bean
     SecurityFilterChain filterChainApp(HttpSecurity http) throws Exception {
     http.authorizeHttpRequests(authorize -> authorize
-    .requestMatchers(toH2Console()).permitAll()
     .requestMatchers("/admin/ort/**").hasRole("CHEF")
     .requestMatchers("/admin").authenticated()
+    .requestMatchers(toH2Console()).permitAll()
     .anyRequest().permitAll())
     .formLogin(withDefaults())
     .csrf(csrf -> csrf.ignoringRequestMatchers(toH2Console()))
