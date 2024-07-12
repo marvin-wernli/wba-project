@@ -44,6 +44,7 @@ public class SecurityConfiguration {
     @Bean
     SecurityFilterChain filterChainApp(HttpSecurity http) throws Exception {
     http.authorizeHttpRequests(authorize -> authorize
+    .requestMatchers("/admin/ort").hasRole("CHEF")
     .requestMatchers("/admin/ort/**").hasRole("CHEF")
     .requestMatchers("/admin").authenticated()
     .requestMatchers(toH2Console()).permitAll()

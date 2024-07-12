@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
@@ -56,9 +59,20 @@ public class TourServiceImpl implements TourService {
 
     @Override @Transactional
     public void loescheTourMitId(long id) {
-        tourRepository.deleteById(id);
-        FrontendNachrichtEvent event = new FrontendNachrichtEvent(EventTyp.TOUR, id, Operation.DELETE);
-        frontendNachrichtService.sendEvent(event);
+        var auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null || !auth.isAuthenticated()) {
+            throw new AccessDeniedException("Nicht authentifiziert für diese Aktion");
+        }
+        String username = ((UserDetails) auth.getPrincipal()).getUsername();
+        Optional <Tour> tour = holeTourMitId(id);
+
+        if (tour.get().getAnbieter().getMail().equals(username)) {
+            tourRepository.deleteById(id);
+            FrontendNachrichtEvent event = new FrontendNachrichtEvent(EventTyp.TOUR, id, Operation.DELETE);
+            frontendNachrichtService.sendEvent(event);
+        } else {
+            throw new AccessDeniedException("Nicht berechtigt für diese Aktion");
+        }
     }
 
     @Transactional
