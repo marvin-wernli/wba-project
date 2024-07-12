@@ -25,7 +25,7 @@ public class SecurityConfiguration {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
-    @Bean public UserDetailsService userDetailsService() {
+    /** @Bean public UserDetailsService userDetailsService() {
         UserBuilder userbuilder = User.withDefaultPasswordEncoder(); 
         UserDetails user1 = userbuilder
             .username("user")
@@ -39,6 +39,7 @@ public class SecurityConfiguration {
             .build();
     return new InMemoryUserDetailsManager(user1,user2);
     } 
+    */
 
     @Bean
     SecurityFilterChain filterChainApp(HttpSecurity http) throws Exception {

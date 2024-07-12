@@ -8,6 +8,7 @@ import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
     public interface BenutzerService {
         List<Benutzer> holeAlleBenutzer();
         Optional<Benutzer> holeBenutzerMitId(long id);
+        Optional<Benutzer> holeBenutzerMitEMail(String EMail);
 
         Benutzer speichereBenutzer(Benutzer b);
         void loescheBenutzerMitId(long id);

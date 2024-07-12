@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.entities.benutzer.BenutzerRepository;
+import jakarta.validation.constraints.Email;
 
 @Service
 public class BenutzerServiceImpl implements BenutzerService {
@@ -29,6 +31,16 @@ public class BenutzerServiceImpl implements BenutzerService {
     @Override @Transactional
     public Optional<Benutzer> holeBenutzerMitId(long id) {
         return benutzerRepository.findById(id);
+    }
+
+    @Override @Transactional
+    public Optional<Benutzer> holeBenutzerMitEMail(String EMail) {
+        Benutzer benutzer = new Benutzer();
+        benutzer.setMail(EMail);
+
+        Example<Benutzer> example = Example.of(benutzer);
+        benutzerRepository.findOne(example);
+        return benutzerRepository.findByEmail(EMail);
     }
 
     @Override @Transactional
